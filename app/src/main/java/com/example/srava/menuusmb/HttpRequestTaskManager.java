@@ -21,7 +21,7 @@ import java.nio.charset.StandardCharsets;
 public class HttpRequestTaskManager extends AsyncTask<String, Integer, JSONObject> {
 
 
-    //Déclaration de toutes les objets nécessaire : Progressbar, TextView..
+    //DÃ©claration de toutes les objets nÃ©cessaire : Progressbar, TextView..
     ProgressBar progressBar;
     TextView connectionStatus;
     private static final String FLAG_SUCCESS = "success";
@@ -40,11 +40,11 @@ public class HttpRequestTaskManager extends AsyncTask<String, Integer, JSONObjec
     }
 
 
-    //Méthode onProgressUpdate qui met à jour la progressBar à chaque appel avec un int en paramètre
+    //MÃ©thode onProgressUpdate qui met Ã  jour la progressBar Ã  chaque appel avec un int en paramÃ¨tre
     @Override
     protected void onProgressUpdate(Integer... values){
         super.onProgressUpdate(values);
-        // Mise à jour de la ProgressBar
+        // Mise Ã  jour de la ProgressBar
         progressBar.setProgress(values[0]);
     }
 
@@ -59,22 +59,22 @@ public class HttpRequestTaskManager extends AsyncTask<String, Integer, JSONObjec
         JSONObject jsonResponse= new JSONObject();
         try{
 
-            //Publication de la progressBar à 0%
+            //Publication de la progressBar Ã  0%
             publishProgress(0);
 
-            //url de mon site héberger chez OVH
+            //url de mon site hÃ©berger chez OVH
             URL url = new URL(RESTAU);
             HttpURLConnection connection = (HttpURLConnection )url.openConnection();
 
-            //Définition de la méthode utilisé ici POST
+            //DÃ©finition de la mÃ©thode utilisÃ© ici POST
             connection.setRequestMethod("POST");
 
             //Connection
             connection.connect();
-            //Publication de la progressBar à 50%
+            //Publication de la progressBar Ã  50%
             publishProgress(50);
 
-            // Décodage de la réponse
+            // DÃ©codage de la rÃ©ponse
             InputStream in = new BufferedInputStream(connection.getInputStream());
             jsonResponse = new JSONObject(convertStreamToString(in));
 
@@ -86,7 +86,7 @@ public class HttpRequestTaskManager extends AsyncTask<String, Integer, JSONObjec
         }  catch (NetworkOnMainThreadException e){
             connectionStatus.setText("Marche pas si android > 3.0!!");
         }
-        //return la réponse JSON
+        //return la rÃ©ponse JSON
         return jsonResponse;
     }
 
@@ -95,16 +95,16 @@ public class HttpRequestTaskManager extends AsyncTask<String, Integer, JSONObjec
     @Override
     protected void onPostExecute( JSONObject result){
 
-        //Obligé de mettre un TryAndCatch pour une conversion de jSON
+        //ObligÃ© de mettre un TryAndCatch pour une conversion de jSON
         try {
             Log.d("result",result.getString(FLAG_SUCCESS));
             int loginOK = result.getInt(FLAG_SUCCESS);
             connectionStatus.setText(result.getString(FLAG_MESSAGE));
 
-            // On vérifie si les logs sont OK !
+            // On vÃ©rifie si les logs sont OK !
             if(loginOK!=0)
             {
-                connectionStatus.setText("Restau détecté");
+                connectionStatus.setText(result.toString());
                 publishProgress(100);
             }
             else
