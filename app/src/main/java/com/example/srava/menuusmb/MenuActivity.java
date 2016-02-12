@@ -26,8 +26,10 @@ public class MenuActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
         //new RequestTask().execute("http://www.quentinmodena.fr/");
         new RequestTask().execute("http://www.crous-grenoble.fr/restaurant/restaurant-universitaire-dannecy/");
+
         // Récuperation de la progressBar par l'id
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 

@@ -25,6 +25,7 @@ class RequestTask extends AsyncTask<String, String, Menu> {
     @Override
 // username, password, message, mobile
     protected Menu doInBackground(String... url) {
+        Log.d("test", "test");
         // constants
         Boolean recup=false;
         int timeoutSocket = 50000;
