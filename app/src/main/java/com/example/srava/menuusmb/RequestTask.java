@@ -26,6 +26,8 @@ class RequestTask extends AsyncTask<String, String, String> {
 // username, password, message, mobile
     protected String doInBackground(String... url) {
         // constants
+
+        Boolean recup=false;
         int timeoutSocket = 50000;
         int timeoutConnection = 50000;
 
@@ -52,11 +54,24 @@ class RequestTask extends AsyncTask<String, String, String> {
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(getResponseEntity.getContent()));
 
+            String menu[][][] = new String[7][3][] ;
+            int nbJours=0;
+
             while((line = reader.readLine()) != null) {
-                    if(line=="<a>")
-                        Log.d("lineHTML","LINE");
-                    Log.d("line",line);
-                    total.append(line);
+                    if(line.indexOf("menu-repas")!=-1)
+                        recup=true;
+                    else if(line.indexOf("http://connect.facebook.net/fr_FR/all.js")!=-1)
+                        recup=false;
+                    if(recup==true){
+                        if(line.indexOf("<h3>Menu")!=-1)
+                        {
+                            menu[nbJours][0][0]=line;
+                            nbJours+=1;
+                        }
+
+                        Log.d("line",line);
+                        total.append(line);
+                    }
             }
 
             line = total.toString();
