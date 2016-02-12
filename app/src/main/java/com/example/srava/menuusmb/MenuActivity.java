@@ -2,8 +2,15 @@ package com.example.srava.menuusmb;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
 
 public class MenuActivity extends Activity {
@@ -12,6 +19,10 @@ public class MenuActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        //new RequestTask().execute("http://www.quentinmodena.fr/");
+        new RequestTask().execute("http://www.crous-grenoble.fr/restaurant/restaurant-universitaire-dannecy/");
+
+
     }
 
     @Override
