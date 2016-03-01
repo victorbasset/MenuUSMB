@@ -27,8 +27,6 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        //new RequestTask().execute("http://www.quentinmodena.fr/");
-        new RequestTask().execute("http://www.crous-grenoble.fr/restaurant/restaurant-universitaire-dannecy/");
 
         // Récuperation de la progressBar par l'id
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -76,7 +74,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
             result.setConnectionStatus(connectionStatus);
             // On lui passe la progressBar et le texte de connectionStatus
             result.setProgressBar(progressBar);
-            result.execute(new Post("notePlat"));
+            result.execute(new Post("plat"));
         }
     }
 }

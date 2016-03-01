@@ -128,7 +128,7 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
             if(resSuccess!=0){
 
                 //connectionStatus.setText(result.getString(FLAG_MESSAGE).toString());
-                connectionStatus.setText(deserializeNotesPlats(result.toString()).listeNotesPlats.toString());
+                connectionStatus.setText(deserializePlats(result.toString()).listePlats.toString());
                 publishProgress(100);
             }
             else
@@ -180,7 +180,8 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
                     array.getJSONObject(i).getString("libelle_plat"),
                     array.getJSONObject(i).getDouble("prix_plat"),
                     array.getJSONObject(i).getString("id_categorie"),
-                    array.getJSONObject(i).getString("id_restaurant")));
+                    array.getJSONObject(i).getString("id_restaurant"),
+                    array.getJSONObject(i).getString("jour")));
         }
         return plats;
     }
@@ -193,7 +194,7 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
             notesPlats.listeNotesPlats.add(new NotesPlat(array.getJSONObject(i).getString("id_note"),
                     array.getJSONObject(i).getInt("note"),
                     array.getJSONObject(i).getString("commentaire"),
-                    getDate(array.getJSONObject(i).getString("date"))));
+                    array.getJSONObject(i).getString("date")));
         }
         return notesPlats;
     }
@@ -206,27 +207,10 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
             noteRestaurants.listeNoteRestaurants.add(new NoteRestaurant(array.getJSONObject(i).getString("id_note"),
                     array.getJSONObject(i).getInt("note"),
                     array.getJSONObject(i).getString("commentaire"),
-                    getDate(array.getJSONObject(i).getString("date"))));
+                    array.getJSONObject(i).getString("date")));
         }
         return noteRestaurants;
     }
-
-
-    public Date getDate(String string){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy HH:mm:ss");
-        Date d=new Date();
-        try {
-            d = sdf.parse(string);
-        } catch (ParseException ex) {
-            Log.d("Erreur","Erreur");
-        }
-        return d;
-    }
-
-
-
-
-
 }
 
 

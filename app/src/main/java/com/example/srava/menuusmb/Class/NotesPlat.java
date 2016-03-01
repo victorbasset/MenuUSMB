@@ -9,12 +9,12 @@ public class NotesPlat {
     public String id_note;
     public Integer note;
     public String commentaire;
-    public Date date;
+    public String date;
 
     public NotesPlat() {
     }
 
-    public NotesPlat(String id,Integer note,String commentaire,Date date) {
+    public NotesPlat(String id,Integer note,String commentaire,String date) {
         this.id_note = id;
         this.note=note;
         this.commentaire=commentaire;

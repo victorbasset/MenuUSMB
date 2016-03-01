@@ -9,12 +9,14 @@ public class Plat {
     public Double prix_plat;
     public String id_categorie;
     public String id_restaurant;
+    public String jour;
 
     public Plat() {
     }
 
-    public Plat(String id,String libelle,Double prix,String idcategorie,String idrestaurant) {
+    public Plat(String id,String libelle,Double prix,String idcategorie,String idrestaurant,String jour) {
         this.id_plat = id;
+        this.jour=jour;
         this.libelle_plat=libelle;
         this.prix_plat=prix;
         this.id_categorie=idcategorie;
@@ -23,6 +25,6 @@ public class Plat {
 
     @Override
     public String toString() {
-        return id_plat+" : "+libelle_plat+" : "+prix_plat+" : "+id_categorie+" : "+id_restaurant;
+        return id_plat+" : "+libelle_plat+" : "+prix_plat+" : "+id_categorie+" : "+id_restaurant+" : "+jour;
     }
 }
