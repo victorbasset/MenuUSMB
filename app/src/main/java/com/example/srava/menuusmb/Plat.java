@@ -10,23 +10,19 @@ public class Plat {
     public String id_categorie;
     public String id_restaurant;
 
-    public Restaurant() {
+    public Plat() {
     }
 
-    public Restaurant(String id,String libelle,Float prix,String idcategorie,String idrestaurant) {
+    public Plat(String id,String libelle,Float prix,String idcategorie,String idrestaurant) {
         this.id_plat = id;
         this.libelle_plat=libelle;
-    }
-
-    public String getIdRestaurant() {
-        return id_restaurant;
-    }
-    public String getLibelleRestaurant() {
-        return libelle_restaurant;
+        this.prix_plat=prix;
+        this.id_categorie=idcategorie;
+        this.id_restaurant=idrestaurant;
     }
 
     @Override
     public String toString() {
-        return id_restaurant+" :"+ libelle_restaurant;
+        return "A completer";
     }
 }
