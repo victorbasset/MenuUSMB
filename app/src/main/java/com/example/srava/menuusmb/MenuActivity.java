@@ -76,7 +76,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
             result.setConnectionStatus(connectionStatus);
             // On lui passe la progressBar et le texte de connectionStatus
             result.setProgressBar(progressBar);
-            result.execute("ok");
+            result.execute(new Post("plat"));
         }
     }
 }

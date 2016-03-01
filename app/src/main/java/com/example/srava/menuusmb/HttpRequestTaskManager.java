@@ -5,6 +5,8 @@ import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.BufferedInputStream;
@@ -14,11 +16,13 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by bassetv on 27/01/2016.
  */
-public class HttpRequestTaskManager extends AsyncTask<String, Integer, JSONObject> {
+public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject> {
 
 
     //Déclaration de toutes les objets nécessaire : Progressbar, TextView..
@@ -26,7 +30,7 @@ public class HttpRequestTaskManager extends AsyncTask<String, Integer, JSONObjec
     TextView connectionStatus;
     private static final String FLAG_SUCCESS = "success";
     private static final String FLAG_MESSAGE = "message";
-    private static final String RESTAU = "http://victorbasset.fr/MenuUSMB/restau.php";
+    private static final String RESTAU = "http://menuusmb.lightning-sphere.com";
 
 
     // Setter de la progressBar
@@ -50,7 +54,7 @@ public class HttpRequestTaskManager extends AsyncTask<String, Integer, JSONObjec
 
 
     @Override
-    protected JSONObject doInBackground(String... string){
+    protected JSONObject doInBackground(Post... post){
 
         Log.d("DoInBack", "DoInBack");
 
@@ -68,6 +72,12 @@ public class HttpRequestTaskManager extends AsyncTask<String, Integer, JSONObjec
 
             //Définition de la méthode utilisé ici POST
             connection.setRequestMethod("POST");
+            String urlParameters = "etat=" + post[0].getParametreUrl();
+            byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
+            connection.setRequestProperty("Content-Length", "" + postData.length);
+            try (DataOutputStream wr = new DataOutputStream(connection.getOutputStream())) {
+                wr.write(postData);
+            }
 
             //Connection
             connection.connect();
@@ -97,23 +107,28 @@ public class HttpRequestTaskManager extends AsyncTask<String, Integer, JSONObjec
 
         //Obligé de mettre un TryAndCatch pour une conversion de jSON
         try {
-            Log.d("result",result.getString(FLAG_SUCCESS));
-            int loginOK = result.getInt(FLAG_SUCCESS);
+
+            //Log.d("result",result.getString(FLAG_SUCCESS));
+            Log.d("debug","2");
+            int resSuccess = result.getInt(FLAG_SUCCESS);
             connectionStatus.setText(result.getString(FLAG_MESSAGE));
+            Log.d("debug","1");
 
             // On vérifie si les logs sont OK !
-            if(loginOK!=0)
-            {
-                connectionStatus.setText(result.toString());
+            if(resSuccess!=0){
+
+                connectionStatus.setText(result.getString(FLAG_MESSAGE).toString());
+                //connectionStatus.setText(deserializeRestaurants(result.toString()).listeRestaurants.toString());
                 publishProgress(100);
             }
             else
             {
-                connectionStatus.setText("Erreur de connexion");
+                connectionStatus.setText(result.getString(FLAG_MESSAGE).toString());
                 publishProgress(0);
             }
             //Gestion des erreurs et expections
         }  catch(JSONException e){
+            Log.d("debug","3");
             Log.e("JSONException", "Error");
         }  catch (NetworkOnMainThreadException e) {
             Log.e("ThreadException", "android > 3.0!!");
@@ -126,6 +141,22 @@ public class HttpRequestTaskManager extends AsyncTask<String, Integer, JSONObjec
         java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
         return s.hasNext() ? s.next() : "";
     }
+
+    public Restaurants deserializeRestaurants(String chaineJson) throws JSONException {
+
+        Restaurants restaurants=new Restaurants();
+
+        JSONObject obj = new JSONObject(chaineJson);
+
+        JSONArray array = obj.getJSONArray("message");
+        for(int i = 0 ; i < array.length() ; i++){
+            restaurants.listeRestaurants.add(new Restaurant(array.getJSONObject(i).getString("id_restaurant"), array.getJSONObject(i).getString("libelle_restaurant")));
+        }
+
+        return restaurants;
+    }
+
+
 
 }
 
