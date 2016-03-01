@@ -23,6 +23,6 @@ public class NotesPlat {
 
     @Override
     public String toString() {
-        return "A completer";
+        return id_note+" : "+note+" : "+commentaire+" : "+date;
     }
 }

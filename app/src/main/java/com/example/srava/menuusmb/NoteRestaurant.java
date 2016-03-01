@@ -24,6 +24,6 @@ public class NoteRestaurant {
 
     @Override
     public String toString() {
-        return "A completer";
+        return _id_note+" : "+_note+" : "+_commentaire+" : "+_date;
     }
 }

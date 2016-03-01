@@ -16,8 +16,13 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by bassetv on 27/01/2016.
@@ -108,17 +113,15 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
         //Obligé de mettre un TryAndCatch pour une conversion de jSON
         try {
 
-            //Log.d("result",result.getString(FLAG_SUCCESS));
-            Log.d("debug","2");
+            Log.d("result",result.getString(FLAG_SUCCESS));
             int resSuccess = result.getInt(FLAG_SUCCESS);
             connectionStatus.setText(result.getString(FLAG_MESSAGE));
-            Log.d("debug","1");
 
             // On vérifie si les logs sont OK !
             if(resSuccess!=0){
 
-                connectionStatus.setText(result.getString(FLAG_MESSAGE).toString());
-                //connectionStatus.setText(deserializeRestaurants(result.toString()).listeRestaurants.toString());
+                //connectionStatus.setText(result.getString(FLAG_MESSAGE).toString());
+                connectionStatus.setText(deserializeNotesPlats(result.toString()).listeNotesPlats.toString());
                 publishProgress(100);
             }
             else
@@ -128,7 +131,6 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
             }
             //Gestion des erreurs et expections
         }  catch(JSONException e){
-            Log.d("debug","3");
             Log.e("JSONException", "Error");
         }  catch (NetworkOnMainThreadException e) {
             Log.e("ThreadException", "android > 3.0!!");
@@ -143,18 +145,78 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
     }
 
     public Restaurants deserializeRestaurants(String chaineJson) throws JSONException {
-
         Restaurants restaurants=new Restaurants();
-
         JSONObject obj = new JSONObject(chaineJson);
-
         JSONArray array = obj.getJSONArray("message");
         for(int i = 0 ; i < array.length() ; i++){
             restaurants.listeRestaurants.add(new Restaurant(array.getJSONObject(i).getString("id_restaurant"), array.getJSONObject(i).getString("libelle_restaurant")));
         }
-
         return restaurants;
     }
+
+    public Categories deserializeCategories(String chaineJson) throws JSONException {
+        Categories categories=new Categories();
+        JSONObject obj = new JSONObject(chaineJson);
+        JSONArray array = obj.getJSONArray("message");
+        for(int i = 0 ; i < array.length() ; i++){
+            categories.listeCategories.add(new Categorie(array.getJSONObject(i).getString("id_categorie"), array.getJSONObject(i).getString("libelle_categorie")));
+        }
+        return categories;
+    }
+
+    public Plats deserializePlats(String chaineJson) throws JSONException {
+        Plats plats=new Plats();
+        JSONObject obj = new JSONObject(chaineJson);
+        JSONArray array = obj.getJSONArray("message");
+        for(int i = 0 ; i < array.length() ; i++){
+            plats.listePlats.add(new Plat(array.getJSONObject(i).getString("id_plat"),
+                    array.getJSONObject(i).getString("libelle_plat"),
+                    array.getJSONObject(i).getDouble("prix_plat"),
+                    array.getJSONObject(i).getString("id_categorie"),
+                    array.getJSONObject(i).getString("id_restaurant")));
+        }
+        return plats;
+    }
+
+    public NotesPlats deserializeNotesPlats(String chaineJson) throws JSONException {
+        NotesPlats notesPlats=new NotesPlats();
+        JSONObject obj = new JSONObject(chaineJson);
+        JSONArray array = obj.getJSONArray("message");
+        for(int i = 0 ; i < array.length() ; i++){
+            notesPlats.listeNotesPlats.add(new NotesPlat(array.getJSONObject(i).getString("id_note"),
+                    array.getJSONObject(i).getInt("note"),
+                    array.getJSONObject(i).getString("commentaire"),
+                    getDate(array.getJSONObject(i).getString("date"))));
+        }
+        return notesPlats;
+    }
+
+    public NoteRestaurants deserializeNotesRestaurants(String chaineJson) throws JSONException {
+        NoteRestaurants noteRestaurants=new NoteRestaurants();
+        JSONObject obj = new JSONObject(chaineJson);
+        JSONArray array = obj.getJSONArray("message");
+        for(int i = 0 ; i < array.length() ; i++){
+            noteRestaurants.listeNoteRestaurants.add(new NoteRestaurant(array.getJSONObject(i).getString("id_note"),
+                    array.getJSONObject(i).getInt("note"),
+                    array.getJSONObject(i).getString("commentaire"),
+                    getDate(array.getJSONObject(i).getString("date"))));
+        }
+        return noteRestaurants;
+    }
+
+
+    public Date getDate(String string){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy HH:mm:ss");
+        Date d=new Date();
+        try {
+            d = sdf.parse(string);
+        } catch (ParseException ex) {
+            Log.d("Erreur","Erreur");
+        }
+        return d;
+    }
+
+
 
 
 
