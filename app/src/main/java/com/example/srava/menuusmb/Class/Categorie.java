@@ -1,4 +1,4 @@
-package com.example.srava.menuusmb;
+package com.example.srava.menuusmb.Class;
 
 /**
  * Created by perezgoa on 01/03/2016.

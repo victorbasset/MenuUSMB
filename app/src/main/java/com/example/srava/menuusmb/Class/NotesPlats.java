@@ -1,4 +1,4 @@
-package com.example.srava.menuusmb;
+package com.example.srava.menuusmb.Class;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -6,6 +6,17 @@ import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.srava.menuusmb.Class.Categorie;
+import com.example.srava.menuusmb.Class.Categories;
+import com.example.srava.menuusmb.Class.NoteRestaurant;
+import com.example.srava.menuusmb.Class.NoteRestaurants;
+import com.example.srava.menuusmb.Class.NotesPlat;
+import com.example.srava.menuusmb.Class.NotesPlats;
+import com.example.srava.menuusmb.Class.Plat;
+import com.example.srava.menuusmb.Class.Plats;
+import com.example.srava.menuusmb.Class.Restaurant;
+import com.example.srava.menuusmb.Class.Restaurants;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,11 +29,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Created by bassetv on 27/01/2016.
