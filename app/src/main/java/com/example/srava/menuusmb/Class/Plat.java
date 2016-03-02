@@ -6,7 +6,7 @@ package com.example.srava.menuusmb.Class;
 public class Plat {
     public String id_plat;
     public String libelle_plat;
-    public Double prix_plat;
+    public String prix_plat;
     public String id_categorie;
     public String id_restaurant;
     public String jour;
@@ -14,7 +14,7 @@ public class Plat {
     public Plat() {
     }
 
-    public Plat(String id,String libelle,Double prix,String idcategorie,String idrestaurant,String jour) {
+    public Plat(String id,String libelle,String prix,String idcategorie,String idrestaurant,String jour) {
         this.id_plat = id;
         this.jour=jour;
         this.libelle_plat=libelle;
