@@ -12,7 +12,8 @@ import android.util.Log;
  */
 public class MyGestionAdapter {
 
-        // variables de définition de la base gérée
+        // variables de d
+        // éfinition de la base gérée
         private static final String DATABASE_NAME = "maBase.db";
         private static final int DATABASE_VERSION = 1;
         private SQLiteDatabase shotsDB; // reference vers une base de données

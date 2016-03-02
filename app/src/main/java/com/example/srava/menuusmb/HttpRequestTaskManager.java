@@ -178,7 +178,7 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
         for(int i = 0 ; i < array.length() ; i++){
             plats.listePlats.add(new Plat(array.getJSONObject(i).getString("id_plat"),
                     array.getJSONObject(i).getString("libelle_plat"),
-                    array.getJSONObject(i).getString("prix_plat"),
+                    array.getJSONObject(i).getString("prix"),
                     array.getJSONObject(i).getString("id_categorie"),
                     array.getJSONObject(i).getString("id_restaurant"),
                     array.getJSONObject(i).getString("jour")));
