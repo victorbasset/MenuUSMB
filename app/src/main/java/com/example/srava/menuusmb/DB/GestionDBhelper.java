@@ -10,9 +10,66 @@ import android.util.Log;
  */
 public class GestionDBhelper extends SQLiteOpenHelper {
 
+    public static final String RESTAURANT_TABLE="RESTAURANT";
+    public static final String RESTAURANT_ID="id_restaurant";
+    public static final String RESTAURANT_LIBELLE="libelle_restaurant";
+
+    public static final String PLAT_TABLE="PLAT";
+    public static final String PLAT_ID="id_plat";
+    public static final String PLAT_LIBELLE="libelle_plat";
+    public static final String PLAT_PRIX="prix";
+    public static final String PLAT_ID_CAT="id_categorie";
+    public static final String PLAT_ID_REST="id_restaurant";
+    public static final String PLAT_JOUR="jour";
+
+    public static final String CATEGORIE_TABLE="CATEGORIE_PLAT";
+    public static final String CATEGORIE_ID="id_categorie";
+    public static final String CATEGORIE_LIBELLE="libelle_categorie";
+
+    public static final String NOTE_PLAT_TABLE="NOTE_PLAT";
+    public static final String NOTE_PLAT_ID="id_note";
+    public static final String NOTE_PLAT_NOTE="note";
+    public static final String NOTE_PLAT_COMMENTAIRE="commentaire";
+    public static final String NOTE_PLAT_DATE="date";
+
+    public static final String NOTE_RESTAURANT_TABLE="NOTE_RESTAURANT";
+    public static final String NOTE_RESTAURANT_ID="id_note";
+    public static final String NOTE_RESTAURANT_NOTE="note";
+    public static final String NOTE_RESTAURANT_COMMENTAIRE="commentaire";
+    public static final String NOTE_RESTAURANT_DATE="date";
+
     // String permettant la creation de la table
-    private static final String DATABASE_CREATE =
-            "CREATE TABLE CATEGORIE_PLAT(id_categorie integer ,libelle_categorie text); ";
+    private static final String DATABASE_CREATE_RESTAURANT = "CREATE TABLE "+RESTAURANT_TABLE+" ( " +
+            RESTAURANT_ID +" integer , " +
+            RESTAURANT_LIBELLE+" text " +
+            "); ";
+    private static final String DATABASE_CREATE_PLAT = "CREATE TABLE "+PLAT_TABLE+"( " +
+            PLAT_ID+" integer , " +
+            PLAT_LIBELLE+"  text , " +
+            PLAT_PRIX+" numeric, " +
+            PLAT_ID_CAT+" integer not null, " +
+            PLAT_ID_REST+" integer not null, " +
+            PLAT_JOUR+" text " +
+            "); ";
+
+    private static final String DATABASE_CREATE_CATEGORIE_PLAT = "CREATE TABLE "+CATEGORIE_TABLE+"( " +
+            CATEGORIE_ID+" integer , " +
+            CATEGORIE_LIBELLE+" text " +
+            "); ";
+
+    private static final String DATABASE_CREATE_NOTE_PLAT = "CREATE TABLE "+NOTE_PLAT_TABLE+"( " +
+            NOTE_PLAT_ID+" integer , " +
+            NOTE_PLAT_NOTE+" integer not null, " +
+            NOTE_PLAT_COMMENTAIRE+" text , " +
+            NOTE_PLAT_DATE+" text " +
+            "); ";
+
+    private static final String DATABASE_CREATE_NOTE_RESTAURANT = "CREATE TABLE "+NOTE_RESTAURANT_TABLE+"( " +
+            NOTE_RESTAURANT_ID+" integer , " +
+            NOTE_RESTAURANT_NOTE+" integer not null, " +
+            NOTE_RESTAURANT_COMMENTAIRE+" text , " +
+            NOTE_RESTAURANT_DATE+" text " +
+            "); ";
 
 
     public GestionDBhelper(Context context, String name, SQLiteDatabase.CursorFactory factory,
@@ -23,11 +80,14 @@ public class GestionDBhelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-// creation de la table
-
-        db.execSQL(DATABASE_CREATE);
+    // creation de la table
+        db.execSQL(DATABASE_CREATE_RESTAURANT);
+        db.execSQL(DATABASE_CREATE_PLAT);
+        db.execSQL(DATABASE_CREATE_CATEGORIE_PLAT);
+        db.execSQL(DATABASE_CREATE_NOTE_RESTAURANT);
+        db.execSQL(DATABASE_CREATE_NOTE_PLAT);
         Log.i("ShotsDBhelper", "Database created with instruction : " +
-                DATABASE_CREATE);
+                DATABASE_CREATE_RESTAURANT + DATABASE_CREATE_PLAT + DATABASE_CREATE_CATEGORIE_PLAT+DATABASE_CREATE_NOTE_RESTAURANT+DATABASE_CREATE_NOTE_PLAT);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

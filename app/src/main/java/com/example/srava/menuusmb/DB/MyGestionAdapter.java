@@ -14,9 +14,9 @@ public class MyGestionAdapter {
 
         // variables de d
         // éfinition de la base gérée
-        private static final String DATABASE_NAME = "maBase2.db";
+        private static final String DATABASE_NAME = "maBase.db";
         private static final int DATABASE_VERSION = 2;
-        private SQLiteDatabase shotsDB; // reference vers une base de données
+        private SQLiteDatabase gestionDB; // reference vers une base de données
         private GestionDBhelper dbHelper; // référence vers le Helper de gestion de la base
 
 
@@ -26,11 +26,11 @@ public class MyGestionAdapter {
 
         public void open() throws SQLiteException { // ouverture de la base
             try{
-                shotsDB=dbHelper.getWritableDatabase();
-                Log.i("MyShotsAdapter", "Base ouverte en ecriture " + shotsDB);
+                gestionDB=dbHelper.getWritableDatabase();
+                Log.i("MyShotsAdapter", "Base ouverte en ecriture " + gestionDB);
             }catch (SQLiteException e){
-                shotsDB=dbHelper.getReadableDatabase();
-                Log.i("MyShotsAdapter", "Base ouverte en lecture " + shotsDB);
+                gestionDB=dbHelper.getReadableDatabase();
+                Log.i("MyShotsAdapter", "Base ouverte en lecture " + gestionDB);
             }
         }
 
@@ -42,9 +42,9 @@ public class MyGestionAdapter {
         public long insertShot(int id, String libelle){
             ContentValues newValue;
             newValue= new ContentValues();
-            newValue.put("id_categorie", id);
-            newValue.put("libelle_categorie", libelle);
-            return shotsDB.insert("categorie_plat", null, newValue);
+            newValue.put(GestionDBhelper.CATEGORIE_ID, id);
+            newValue.put(GestionDBhelper.CATEGORIE_LIBELLE, libelle);
+            return gestionDB.insert(GestionDBhelper.CATEGORIE_TABLE, null, newValue);
         }
         /*public boolean updateShot(int ligneID, String chemin, String typeShot, String commentaire){
             ContentValues newValue;
@@ -61,9 +61,11 @@ public class MyGestionAdapter {
         }*/
 
         public Cursor getAllData(){
-            return shotsDB.query("categorie_plat", new String[]{
-                            "id_categorie","libelle_categorie"},
+            Cursor c= gestionDB.query(GestionDBhelper.CATEGORIE_TABLE, new String[]{
+                            GestionDBhelper.CATEGORIE_ID,GestionDBhelper.CATEGORIE_LIBELLE},
                     null, null, null, null, null);
+            Log.wtf("azerty",  Integer.toString(c.getCount()));
+            return  c;
         }
        /* public Cursor getSingleShot(long ligneID){
             return shotsDB.query(dbHelper.NOM_TABLE, new String[]{
