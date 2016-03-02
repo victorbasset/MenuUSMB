@@ -14,13 +14,14 @@ public class MyGestionAdapter {
 
         // variables de d
         // éfinition de la base gérée
-        private static final String DATABASE_NAME = "maBase.db";
-        private static final int DATABASE_VERSION = 1;
+        private static final String DATABASE_NAME = "maBase2.db";
+        private static final int DATABASE_VERSION = 2;
         private SQLiteDatabase shotsDB; // reference vers une base de données
         private GestionDBhelper dbHelper; // référence vers le Helper de gestion de la base
 
 
         public MyGestionAdapter(Context context) { // constructeur
+            Log.wtf("","Constructeur");
             dbHelper = new GestionDBhelper(context, DATABASE_NAME, null, DATABASE_VERSION); }
 
         public void open() throws SQLiteException { // ouverture de la base
@@ -38,14 +39,14 @@ public class MyGestionAdapter {
             dbHelper.close();
         } // fermeture de la base
 
-    /*    public long insertShot(String chemin, String typeShot, String commentaire){
+        public long insertShot(int id, String libelle){
             ContentValues newValue;
             newValue= new ContentValues();
-            newValue.put(GestionDBhelper.KEY_PATH, chemin);
-            newValue.put(GestionDBhelper.KEY_TYPE, typeShot);
-            return shotsDB.insert(GestionDBhelper.NOM_TABLE, null, newValue);
+            newValue.put("id_categorie", id);
+            newValue.put("libelle_categorie", libelle);
+            return shotsDB.insert("categorie_plat", null, newValue);
         }
-        public boolean updateShot(int ligneID, String chemin, String typeShot, String commentaire){
+        /*public boolean updateShot(int ligneID, String chemin, String typeShot, String commentaire){
             ContentValues newValue;
             newValue= new ContentValues();
             newValue.put(GestionDBhelper.KEY_PATH, chemin);
@@ -57,14 +58,14 @@ public class MyGestionAdapter {
         public boolean removeShot(long ligneID){
             return shotsDB.delete(GestionDBhelper.NOM_TABLE, GestionDBhelper.KEY_ID + " = " + ligneID,
                     null)>0;
-        }
+        }*/
 
         public Cursor getAllData(){
-            return shotsDB.query(dbHelper.NOM_TABLE, new String[]{
-                            GestionDBhelper.KEY_ID,GestionDBhelper.KEY_COMMENT, GestionDBhelper.KEY_PATH, GestionDBhelper.KEY_TYPE},
+            return shotsDB.query("categorie_plat", new String[]{
+                            "id_categorie","libelle_categorie"},
                     null, null, null, null, null);
         }
-        public Cursor getSingleShot(long ligneID){
+       /* public Cursor getSingleShot(long ligneID){
             return shotsDB.query(dbHelper.NOM_TABLE, new String[]{
                             GestionDBhelper.KEY_ID+" = " +ligneID,GestionDBhelper.KEY_COMMENT, GestionDBhelper.KEY_PATH, GestionDBhelper.KEY_TYPE},
                     null, null, null, null, null);
