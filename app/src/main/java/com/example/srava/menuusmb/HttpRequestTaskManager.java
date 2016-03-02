@@ -102,9 +102,9 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
 
             //Gestion de toutes les erreurs
         }  catch (IOException e) {
-            Log.e("IOException", "Error");
+            Log.e("IOException", "Error"+e);
         }  catch(JSONException e){
-            Log.e("JSONException", "Error");
+            Log.e("JSONException", "Error"+e);
         }  catch (NetworkOnMainThreadException e){
             connectionStatus.setText("Marche pas si android > 3.0!!");
         }
