@@ -90,7 +90,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
             result.execute(new Post("plat"));
 
             sauvegardeShotsDB.open();
-            sauvegardeShotsDB.insertShot(1, "salade");
+            sauvegardeShotsDB.insertShot(1,"salade");
             populate();
             sauvegardeShotsDB.close();
 
@@ -105,7 +105,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
        // Log.wtf("", );
         Cursor c =sauvegardeShotsDB.getAllData();
         String[] table = new String[] {GestionDBhelper.CATEGORIE_ID, GestionDBhelper.CATEGORIE_LIBELLE};
-        int[] tableInt = new int[] {R.id.nom_fichier, R.id.commentaire};
+        int[] tableInt = new int[] {R.id.id_categorie, R.id.libelle_categorie};
 
         try {
             ListAdapter adapter = new SimpleCursorAdapter(this,

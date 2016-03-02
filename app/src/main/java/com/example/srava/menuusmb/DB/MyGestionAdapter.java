@@ -14,7 +14,7 @@ public class MyGestionAdapter {
 
         // variables de d
         // éfinition de la base gérée
-        private static final String DATABASE_NAME = "maBase.db";
+        private static final String DATABASE_NAME = "maBase31.db";
         private static final int DATABASE_VERSION = 2;
         private SQLiteDatabase gestionDB; // reference vers une base de données
         private GestionDBhelper dbHelper; // référence vers le Helper de gestion de la base
@@ -42,7 +42,7 @@ public class MyGestionAdapter {
         public long insertShot(int id, String libelle){
             ContentValues newValue;
             newValue= new ContentValues();
-            newValue.put(GestionDBhelper.CATEGORIE_ID, id);
+          //  newValue.put(GestionDBhelper.CATEGORIE_ID, id);
             newValue.put(GestionDBhelper.CATEGORIE_LIBELLE, libelle);
             return gestionDB.insert(GestionDBhelper.CATEGORIE_TABLE, null, newValue);
         }
