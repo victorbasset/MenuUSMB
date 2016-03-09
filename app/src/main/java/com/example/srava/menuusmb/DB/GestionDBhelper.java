@@ -12,10 +12,12 @@ public class GestionDBhelper extends SQLiteOpenHelper {
 
     public static final String RESTAURANT_TABLE="RESTAURANT";
     public static final String RESTAURANT_ID="_id";
+    public static final String RESTAURANT_ID_RESTAURANT="id_restaurant";
     public static final String RESTAURANT_LIBELLE="libelle_restaurant";
 
     public static final String PLAT_TABLE="PLAT";
     public static final String PLAT_ID="_id";
+    public static final String PLAT_ID_PLAT="id_plat";
     public static final String PLAT_LIBELLE="libelle_plat";
     public static final String PLAT_PRIX="prix";
     public static final String PLAT_ID_CAT="id_categorie";
@@ -24,19 +26,24 @@ public class GestionDBhelper extends SQLiteOpenHelper {
 
     public static final String CATEGORIE_TABLE="CATEGORIE_PLAT";
     public static final String CATEGORIE_ID="_id";
+    public static final String CATEGORIE_ID_CATEGORIE="id_categorie";
     public static final String CATEGORIE_LIBELLE="libelle_categorie";
 
     public static final String NOTE_PLAT_TABLE="NOTE_PLAT";
     public static final String NOTE_PLAT_ID="_id";
+    public static final String NOTE_PLAT_ID_PLAT="id_plat";
+    public static final String NOTE_PLAT_ID_NOTE_PLAT="id_note";
     public static final String NOTE_PLAT_NOTE="note";
     public static final String NOTE_PLAT_COMMENTAIRE="commentaire";
     public static final String NOTE_PLAT_DATE="date";
 
     public static final String NOTE_RESTAURANT_TABLE="NOTE_RESTAURANT";
     public static final String NOTE_RESTAURANT_ID="_id";
+    public static final String NOTE_RESTAURANT_ID_NOTE_RESTAURANT="id";
     public static final String NOTE_RESTAURANT_NOTE="note";
     public static final String NOTE_RESTAURANT_COMMENTAIRE="commentaire";
     public static final String NOTE_RESTAURANT_DATE="date";
+    public static final String NOTE_RESTAURANT_ID_RESTAURANT="id_restaurant";
 
     // String permettant la creation de la table
     private static final String DATABASE_CREATE_RESTAURANT = "CREATE TABLE "+RESTAURANT_TABLE+" ( " +

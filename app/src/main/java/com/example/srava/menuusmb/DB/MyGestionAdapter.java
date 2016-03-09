@@ -39,13 +39,52 @@ public class MyGestionAdapter {
             dbHelper.close();
         } // fermeture de la base
 
-        public long insertShot(int id, String libelle){
+        public long insertPlat(int id_plat, String libelle_plat, float prix,int id_categorie,int id_restaurant,String jour){
             ContentValues newValue;
             newValue= new ContentValues();
-          //  newValue.put(GestionDBhelper.CATEGORIE_ID, id);
-            newValue.put(GestionDBhelper.CATEGORIE_LIBELLE, libelle);
+            newValue.put(GestionDBhelper.PLAT_ID_PLAT,id_plat);
+            newValue.put(GestionDBhelper.PLAT_LIBELLE,libelle_plat);
+            newValue.put(GestionDBhelper.PLAT_PRIX,prix);
+            newValue.put(GestionDBhelper.PLAT_ID_CAT,id_categorie);
+            newValue.put(GestionDBhelper.PLAT_ID_REST, id_restaurant);
+            newValue.put(GestionDBhelper.PLAT_JOUR, jour);
+            return gestionDB.insert(GestionDBhelper.PLAT_TABLE, null, newValue);
+        }
+        public long insertRestaurant(int id_restaurant, String libelle_restaurant){
+            ContentValues newValue;
+            newValue= new ContentValues();
+            newValue.put(GestionDBhelper.RESTAURANT_ID_RESTAURANT,id_restaurant);
+            newValue.put(GestionDBhelper.RESTAURANT_LIBELLE,libelle_restaurant);
+            return gestionDB.insert(GestionDBhelper.RESTAURANT_TABLE, null, newValue);
+        }
+        public long insertCategoriePlat(int id_categorie, String libelle_categorie){
+            ContentValues newValue;
+            newValue= new ContentValues();
+            newValue.put(GestionDBhelper.CATEGORIE_ID_CATEGORIE,id_categorie);
+            newValue.put(GestionDBhelper.CATEGORIE_LIBELLE,libelle_categorie);
             return gestionDB.insert(GestionDBhelper.CATEGORIE_TABLE, null, newValue);
         }
+        public long insertNotePlat(int id_note_plat, int note,String commentaire,String date,int id_plat){
+            ContentValues newValue;
+            newValue= new ContentValues();
+            newValue.put(GestionDBhelper.NOTE_PLAT_ID_NOTE_PLAT,id_note_plat);
+            newValue.put(GestionDBhelper.NOTE_PLAT_NOTE,note);
+            newValue.put(GestionDBhelper.NOTE_PLAT_COMMENTAIRE,commentaire);
+            newValue.put(GestionDBhelper.NOTE_PLAT_DATE,date);
+            newValue.put(GestionDBhelper.NOTE_PLAT_ID_PLAT,id_plat);
+            return gestionDB.insert(GestionDBhelper.NOTE_PLAT_TABLE, null, newValue);
+        }
+        public long insertNoteRestaurant(int id_note_restaurant, int note,String commentaire,String date,int id_restaurant){
+            ContentValues newValue;
+            newValue= new ContentValues();
+            newValue.put(GestionDBhelper.NOTE_RESTAURANT_ID_NOTE_RESTAURANT,id_note_restaurant);
+            newValue.put(GestionDBhelper.NOTE_RESTAURANT_NOTE,note);
+            newValue.put(GestionDBhelper.NOTE_RESTAURANT_COMMENTAIRE,commentaire);
+            newValue.put(GestionDBhelper.NOTE_RESTAURANT_DATE,date);
+            newValue.put(GestionDBhelper.NOTE_RESTAURANT_ID_RESTAURANT,id_restaurant);
+            return gestionDB.insert(GestionDBhelper.NOTE_RESTAURANT_TABLE, null, newValue);
+        }
+
         /*public boolean updateShot(int ligneID, String chemin, String typeShot, String commentaire){
             ContentValues newValue;
             newValue= new ContentValues();
