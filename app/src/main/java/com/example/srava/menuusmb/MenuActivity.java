@@ -80,7 +80,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.button) {
-
+        sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
        //     sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
             final TextView connectionStatus = (TextView) findViewById(R.id.status );
 
@@ -102,9 +102,9 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-
+                                    populate();
                                     if(progressBar.getProgress() == 100) {
-                                        populate();
+
                                         interrupt();
                                     }
                                 }
@@ -124,11 +124,11 @@ public class MenuActivity extends Activity implements View.OnClickListener {
     private void populate(){
 
         sauvegardeShotsDB.open();
-
+    Log.wtf("Populate","Populate");
       //  Log.wtf("GETDATA",sauvegardeShotsDB.getAllData().toString());
        // Log.wtf("", );
         Cursor c =sauvegardeShotsDB.getAllData();
-        String[] table = new String[] {GestionDBhelper.CATEGORIE_ID, GestionDBhelper.CATEGORIE_LIBELLE};
+        String[] table = new String[] {GestionDBhelper.PLAT_ID, GestionDBhelper.PLAT_LIBELLE};
         int[] tableInt = new int[] {R.id.commentaire, R.id.nom_fichier};
 
         try {

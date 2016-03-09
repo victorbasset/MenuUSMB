@@ -102,8 +102,8 @@ public class MyGestionAdapter {
         }*/
 
         public Cursor getAllData(){
-            Cursor c= gestionDB.query(GestionDBhelper.CATEGORIE_TABLE, new String[]{
-                            GestionDBhelper.CATEGORIE_ID,GestionDBhelper.CATEGORIE_LIBELLE},
+            Cursor c= gestionDB.query(GestionDBhelper.PLAT_TABLE, new String[]{
+                            GestionDBhelper.PLAT_ID,GestionDBhelper.PLAT_LIBELLE},
                     null, null, null, null, null);
             Log.wtf("azerty",  Integer.toString(c.getCount()));
             return  c;
