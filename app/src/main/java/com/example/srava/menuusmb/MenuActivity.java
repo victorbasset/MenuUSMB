@@ -81,7 +81,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         if (v.getId() == R.id.button) {
 
-            sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
+       //     sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
             final TextView connectionStatus = (TextView) findViewById(R.id.status );
 
             // Instanciation de la tâche asynchrone
@@ -102,9 +102,11 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    populate();
-                                    if(progressBar.getProgress() == 100)
+
+                                    if(progressBar.getProgress() == 100) {
+                                        populate();
                                         interrupt();
+                                    }
                                 }
                             });
                         }

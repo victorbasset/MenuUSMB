@@ -14,8 +14,8 @@ public class MyGestionAdapter {
 
         // variables de d
         // éfinition de la base gérée
-        private static final String DATABASE_NAME = "maBase31.db";
-        private static final int DATABASE_VERSION = 2;
+        private static final String DATABASE_NAME = "maBase.db";
+        private static final int DATABASE_VERSION = 4;
         private SQLiteDatabase gestionDB; // reference vers une base de données
         public GestionDBhelper dbHelper; // référence vers le Helper de gestion de la base
 
