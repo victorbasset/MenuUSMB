@@ -82,7 +82,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         if (v.getId() == R.id.button) {
         sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
        //     sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
-            recupData("categorie_plat");
+            recupData("categorie");
             threadPopulate();
 
         }
