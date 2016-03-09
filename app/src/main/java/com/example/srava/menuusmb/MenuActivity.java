@@ -158,7 +158,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                     );
                     ((ListView)findViewById(R.id.ListViewDB)).setAdapter(adapter);
                 }catch (Exception exception){
-                    Log.wtf("ERREUR DE MERDE", exception);
+                    Log.wtf("erreur populate plat", exception);
                 }
 
                 break;
@@ -174,7 +174,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                     );
                     ((ListView)findViewById(R.id.ListViewDB)).setAdapter(adapter);
                 }catch (Exception exception){
-                    Log.wtf("ERREUR DE MERDE", exception);
+                    Log.wtf("erreur populate restaurant", exception);
                 }
 
                 break;
@@ -190,14 +190,14 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                     );
                     ((ListView)findViewById(R.id.ListViewDB)).setAdapter(adapter);
                 }catch (Exception exception){
-                    Log.wtf("ERREUR DE MERDE", exception);
+                    Log.wtf("erreur populate categorie", exception);
                 }
 
                 break;
             case "notePlat":
                 c =sauvegardeShotsDB.getAllDataPlats();
                 table = new String[] {GestionDBhelper.NOTE_PLAT_ID_NOTE_PLAT, GestionDBhelper.NOTE_PLAT_ID_PLAT, GestionDBhelper.NOTE_PLAT_NOTE, GestionDBhelper.NOTE_PLAT_COMMENTAIRE, GestionDBhelper.NOTE_PLAT_DATE};
-                tableInt = new int[] {R.id.commentaire, R.id.nom_fichier};
+                tableInt = new int[] {R.id.commentaire, R.id.nom_fichier,1,2,3};
 
                 try {
                     ListAdapter adapter = new SimpleCursorAdapter(this,
@@ -206,7 +206,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                     );
                     ((ListView)findViewById(R.id.ListViewDB)).setAdapter(adapter);
                 }catch (Exception exception){
-                    Log.wtf("ERREUR DE MERDE", exception);
+                    Log.wtf("erreur populate note plat", exception);
                 }
 
                 break;
@@ -222,7 +222,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                     );
                     ((ListView)findViewById(R.id.ListViewDB)).setAdapter(adapter);
                 }catch (Exception exception){
-                    Log.wtf("ERREUR DE MERDE", exception);
+                    Log.wtf("erreur populate note restaurant", exception);
                 }
 
                 break;
