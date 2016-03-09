@@ -10,15 +10,17 @@ public class NoteRestaurant {
     public int _note;
     public String _commentaire;
     public String _date;
+    public String _id_restaurant;
 
     public NoteRestaurant() {
     }
 
-    public NoteRestaurant(String id_note,int note, String commentaire,String date) {
+    public NoteRestaurant(String id_note,int note, String commentaire,String date,String id_restaurant) {
         this._id_note = id_note;
         this._note=note;
         this._commentaire=commentaire;
         this._date=date;
+        this._id_restaurant=id_restaurant;
 
     }
 

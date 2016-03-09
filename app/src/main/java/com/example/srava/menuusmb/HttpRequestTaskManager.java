@@ -44,6 +44,7 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
     private static final String FLAG_SUCCESS = "success";
     private static final String FLAG_MESSAGE = "message";
     private static final String RESTAU = "http://menuusmb.lightning-sphere.com";
+    private Post postTmp;
 
 
     // Setter de la progressBar
@@ -86,6 +87,7 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
             //Définition de la méthode utilisé ici POST
             connection.setRequestMethod("POST");
             String urlParameters = "etat=" + post[0].getParametreUrl();
+            postTmp=post[0];
             byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
             connection.setRequestProperty("Content-Length", "" + postData.length);
             try (DataOutputStream wr = new DataOutputStream(connection.getOutputStream())) {
@@ -129,22 +131,79 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
             if(resSuccess!=0){
 
                 //connectionStatus.setText(result.getString(FLAG_MESSAGE).toString());
-                Plats p = deserializePlats(result.toString());
-                connectionStatus.setText(p.listePlats.toString());
+                switch(postTmp.parametreUrl){
+                    case "plat":
+                        Plats p = deserializePlats(result.toString());
+                        connectionStatus.setText(p.listePlats.toString());
+                        publishProgress(75);
+                        MenuActivity.sauvegardeShotsDB.open();
+                        for(Plat plat : p.listePlats){
+                            int id_plat= Integer.parseInt(plat.id_plat);
+                            float prix=Float.parseFloat(plat.prix_plat);
+                            int id_categorie= Integer.parseInt(plat.id_categorie);
+                            int id_restaurant= Integer.parseInt(plat.id_restaurant);
 
-                publishProgress(75);
+                            MenuActivity.sauvegardeShotsDB.insertPlat(id_plat,plat.libelle_plat,prix,id_categorie,id_restaurant,plat.jour);
+                        }
+                        MenuActivity.sauvegardeShotsDB.close();
+                        publishProgress(100);
+                        break;
+                    case "restaurant":
+                        Restaurants r = deserializeRestaurants(result.toString());
+                        connectionStatus.setText(r.listeRestaurants.toString());
+                        publishProgress(75);
+                        MenuActivity.sauvegardeShotsDB.open();
+                        for(Restaurant rest : r.listeRestaurants){
+                            int id_rest= Integer.parseInt(rest.id_restaurant);
 
-                MenuActivity.sauvegardeShotsDB.open();
-                for(Plat plat : p.listePlats){
-                    int id_plat= Integer.parseInt(plat.id_plat);
-                    float prix=Float.parseFloat(plat.prix_plat);
-                    int id_categorie= Integer.parseInt(plat.id_categorie);
-                    int id_restaurant= Integer.parseInt(plat.id_restaurant);
+                            MenuActivity.sauvegardeShotsDB.insertRestaurant(id_rest, rest.libelle_restaurant);
+                        }
+                        MenuActivity.sauvegardeShotsDB.close();
+                        publishProgress(100);
+                        break;
+                    case "categorie":
+                        Categories c = deserializeCategories(result.toString());
+                        connectionStatus.setText(c.listeCategories.toString());
+                        publishProgress(75);
+                        MenuActivity.sauvegardeShotsDB.open();
+                        for(Categorie categorie : c.listeCategories){
+                            int id_categorie= Integer.parseInt(categorie.id_categorie);
 
-                    MenuActivity.sauvegardeShotsDB.insertPlat(id_plat,plat.libelle_plat,prix,id_categorie,id_restaurant,plat.jour);
+                            MenuActivity.sauvegardeShotsDB.insertCategoriePlat(id_categorie, categorie.libelle_categorie);
+                        }
+                        MenuActivity.sauvegardeShotsDB.close();
+                        publishProgress(100);
+                        break;
+                    case "notePlat":
+                        NotesPlats np = deserializeNotesPlats(result.toString());
+                        connectionStatus.setText(np.listeNotesPlats.toString());
+                        publishProgress(75);
+                        MenuActivity.sauvegardeShotsDB.open();
+                        for(NotesPlat noteplat : np.listeNotesPlats){
+                            int id_noteplat= Integer.parseInt(noteplat.id_note);
+                            int note= noteplat.note;
+                            int id_plat=Integer.parseInt(noteplat.id_plat);
+                            MenuActivity.sauvegardeShotsDB.insertNotePlat(id_noteplat, note, noteplat.commentaire, noteplat.date, id_plat);
+                        }
+                        MenuActivity.sauvegardeShotsDB.close();
+                        publishProgress(100);
+                        break;
+                    case "noteRestaurant":
+                        NoteRestaurants nr = deserializeNotesRestaurants(result.toString());
+                        connectionStatus.setText(nr.listeNoteRestaurants.toString());
+                        publishProgress(75);
+                        MenuActivity.sauvegardeShotsDB.open();
+                        for(NoteRestaurant noteRestaurant : nr.listeNoteRestaurants){
+                            int id_noteplat= Integer.parseInt(noteRestaurant._id_note);
+                            int note= noteRestaurant._note;
+                            int id_restaurant=Integer.parseInt(noteRestaurant._id_restaurant);
+                            MenuActivity.sauvegardeShotsDB.insertNotePlat(id_noteplat, note,noteRestaurant._commentaire,noteRestaurant._date,id_restaurant);
+                        }
+                        MenuActivity.sauvegardeShotsDB.close();
+                        publishProgress(100);
+                        break;
                 }
-                MenuActivity.sauvegardeShotsDB.close();
-                publishProgress(100);
+
 
             }
             else {
@@ -209,7 +268,8 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
             notesPlats.listeNotesPlats.add(new NotesPlat(array.getJSONObject(i).getString("id_note"),
                     array.getJSONObject(i).getInt("note"),
                     array.getJSONObject(i).getString("commentaire"),
-                    array.getJSONObject(i).getString("date")));
+                    array.getJSONObject(i).getString("date"),
+                    array.getJSONObject(i).getString("id_plat")));
         }
         return notesPlats;
     }
@@ -222,7 +282,8 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
             noteRestaurants.listeNoteRestaurants.add(new NoteRestaurant(array.getJSONObject(i).getString("id_note"),
                     array.getJSONObject(i).getInt("note"),
                     array.getJSONObject(i).getString("commentaire"),
-                    array.getJSONObject(i).getString("date")));
+                    array.getJSONObject(i).getString("date"),
+                    array.getJSONObject(i).getString("id_restaurant")));
         }
         return noteRestaurants;
     }

@@ -70,6 +70,7 @@ public class GestionDBhelper extends SQLiteOpenHelper {
     private static final String DATABASE_CREATE_NOTE_PLAT = "CREATE TABLE "+NOTE_PLAT_TABLE+"( " +
             NOTE_PLAT_ID+" integer primary key autoincrement , " +
             NOTE_PLAT_ID_NOTE_PLAT+ " integer,"+
+            NOTE_PLAT_ID_PLAT+" integer,"+
             NOTE_PLAT_NOTE+" integer not null, " +
             NOTE_PLAT_COMMENTAIRE+" text , " +
             NOTE_PLAT_DATE+" text " +
@@ -78,6 +79,7 @@ public class GestionDBhelper extends SQLiteOpenHelper {
     private static final String DATABASE_CREATE_NOTE_RESTAURANT = "CREATE TABLE "+NOTE_RESTAURANT_TABLE+"( " +
             NOTE_RESTAURANT_ID+" integer primary key autoincrement , " +
             NOTE_RESTAURANT_ID_NOTE_RESTAURANT+ " integer,"+
+            NOTE_RESTAURANT_ID_RESTAURANT+" integer,"+
             NOTE_RESTAURANT_NOTE+" integer not null, " +
             NOTE_RESTAURANT_COMMENTAIRE+" text , " +
             NOTE_RESTAURANT_DATE+" text " +

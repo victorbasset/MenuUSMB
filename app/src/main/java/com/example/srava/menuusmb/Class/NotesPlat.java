@@ -10,15 +10,17 @@ public class NotesPlat {
     public Integer note;
     public String commentaire;
     public String date;
+    public String id_plat;
 
     public NotesPlat() {
     }
 
-    public NotesPlat(String id,Integer note,String commentaire,String date) {
+    public NotesPlat(String id,Integer note,String commentaire,String date,String id_plat) {
         this.id_note = id;
         this.note=note;
         this.commentaire=commentaire;
         this.date=date;
+        this.id_plat=id_plat;
     }
 
     @Override
