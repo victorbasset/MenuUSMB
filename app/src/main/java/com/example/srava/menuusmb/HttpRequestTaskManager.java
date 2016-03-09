@@ -3,6 +3,7 @@ package com.example.srava.menuusmb;
 import android.os.AsyncTask;
 import android.os.NetworkOnMainThreadException;
 import android.util.Log;
+import android.view.Menu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -128,11 +129,24 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
             if(resSuccess!=0){
 
                 //connectionStatus.setText(result.getString(FLAG_MESSAGE).toString());
-                connectionStatus.setText(deserializePlats(result.toString()).listePlats.toString());
+                Plats p = deserializePlats(result.toString());
+                connectionStatus.setText(p.listePlats.toString());
+
+                publishProgress(75);
+
+                MenuActivity.sauvegardeShotsDB.open();
+                for(Plat plat : p.listePlats){
+                    int i= Integer.parseInt(plat.id_plat);
+                    String s=plat.libelle_plat;
+
+                    MenuActivity.sauvegardeShotsDB.insertShot(i,s);
+                }
+
+
+                MenuActivity.sauvegardeShotsDB.close();
                 publishProgress(100);
             }
-            else
-            {
+            else {
                 connectionStatus.setText(result.getString(FLAG_MESSAGE).toString());
                 publishProgress(0);
             }

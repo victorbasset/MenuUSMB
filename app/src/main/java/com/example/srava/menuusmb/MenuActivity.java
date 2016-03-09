@@ -16,6 +16,8 @@ import android.widget.ProgressBar;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
+import com.example.srava.menuusmb.Class.Plat;
+import com.example.srava.menuusmb.Class.Plats;
 import com.example.srava.menuusmb.DB.GestionDBhelper;
 import com.example.srava.menuusmb.DB.MyGestionAdapter;
 
@@ -29,8 +31,8 @@ import java.net.URLConnection;
 public class MenuActivity extends Activity implements View.OnClickListener {
 
     ProgressBar progressBar;
-    private MyGestionAdapter sauvegardeShotsDB;
-    private Cursor shotsDBcursor;
+    public static MyGestionAdapter sauvegardeShotsDB;
+    public static Cursor shotsDBcursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,10 +91,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
             result.setProgressBar(progressBar);
             result.execute(new Post("plat"));
 
-            sauvegardeShotsDB.open();
-            sauvegardeShotsDB.insertShot(1,"salade");
             populate();
-            sauvegardeShotsDB.close();
 
         }
 
@@ -105,7 +104,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
        // Log.wtf("", );
         Cursor c =sauvegardeShotsDB.getAllData();
         String[] table = new String[] {GestionDBhelper.CATEGORIE_ID, GestionDBhelper.CATEGORIE_LIBELLE};
-        int[] tableInt = new int[] {R.id.id_categorie, R.id.libelle_categorie};
+        int[] tableInt = new int[] {R.id.commentaire, R.id.nom_fichier};
 
         try {
             ListAdapter adapter = new SimpleCursorAdapter(this,
