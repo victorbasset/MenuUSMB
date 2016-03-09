@@ -3,6 +3,7 @@ package com.example.srava.menuusmb;
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -91,7 +92,29 @@ public class MenuActivity extends Activity implements View.OnClickListener {
             result.setProgressBar(progressBar);
             result.execute(new Post("plat"));
 
-            populate();
+            Thread t = new Thread() {
+
+                @Override
+                public void run() {
+                    try {
+                        while (!isInterrupted()) {
+                            Thread.sleep(1000);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    populate();
+                                    if(progressBar.getProgress() == 100)
+                                        interrupt();
+                                }
+                            });
+                        }
+                    } catch (InterruptedException e) {
+                    }
+                }
+            };
+
+            t.start();
+
 
         }
 
