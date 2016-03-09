@@ -143,18 +143,9 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
 
                     MenuActivity.sauvegardeShotsDB.insertPlat(id_plat,plat.libelle_plat,prix,id_categorie,id_restaurant,plat.jour);
                 }
-                /*for(Restaurant restaurant : p.listeRestaurants){
-                    int id_plat= Integer.parseInt(plat.id_plat);
-                    float prix=Float.parseFloat(plat.prix_plat);
-                    int id_categorie= Integer.parseInt(plat.id_categorie);
-                    int id_restaurant= Integer.parseInt(plat.id_restaurant);
-
-                    MenuActivity.sauvegardeShotsDB.insertPlat(id_plat,plat.libelle_plat,prix,id_categorie,id_restaurant,plat.jour);
-                }*/
-
-
                 MenuActivity.sauvegardeShotsDB.close();
                 publishProgress(100);
+
             }
             else {
                 connectionStatus.setText(result.getString(FLAG_MESSAGE).toString());
