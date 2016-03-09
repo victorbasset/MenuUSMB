@@ -53,6 +53,10 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         sauvegardeShotsDB= new MyGestionAdapter(getBaseContext());
 
         populate("categorie");
+        populate("plat");
+        populate("restaurant");
+        populate("notePlat");
+        populate("noteRestaurant");
     }
 
     @Override
@@ -83,6 +87,10 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
        //     sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
             recupData("categorie");
+            recupData("plat");
+            recupData("restaurant");
+            recupData("notePlat");
+            recupData("noteRestaurant");
             threadPopulate();
 
         }
@@ -112,6 +120,10 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                             @Override
                             public void run() {
                                 populate("categorie");
+                                populate("plat");
+                                populate("restaurant");
+                                populate("notePlat");
+                                populate("noteRestaurant");
                                 if(progressBar.getProgress() == 100) {
 
                                     interrupt();
