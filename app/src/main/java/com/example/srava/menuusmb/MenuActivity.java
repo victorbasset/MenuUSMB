@@ -52,7 +52,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         Log.wtf("", "Creation de base");
         sauvegardeShotsDB= new MyGestionAdapter(getBaseContext());
 
-        populate();
+        populate("plat");
     }
 
     @Override
@@ -111,7 +111,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                populate();
+                                populate("plat");
                                 if(progressBar.getProgress() == 100) {
 
                                     interrupt();
@@ -126,26 +126,30 @@ public class MenuActivity extends Activity implements View.OnClickListener {
 
         t.start();
     }
-    private void populate(){
+    private void populate(String data){
 
-        sauvegardeShotsDB.open();
+    sauvegardeShotsDB.open();
     Log.wtf("Populate","Populate");
-      //  Log.wtf("GETDATA",sauvegardeShotsDB.getAllData().toString());
-       // Log.wtf("", );
-        Cursor c =sauvegardeShotsDB.getAllData();
-        String[] table = new String[] {GestionDBhelper.PLAT_ID, GestionDBhelper.PLAT_LIBELLE};
-        int[] tableInt = new int[] {R.id.commentaire, R.id.nom_fichier};
 
-        try {
-            ListAdapter adapter = new SimpleCursorAdapter(this,
-                    R.layout.affichage_ligne_base, c,
-                    table, tableInt, 1
-            );
-            ((ListView)findViewById(R.id.ListViewDB)).setAdapter(adapter);
-        }catch (Exception exception){
-            Log.wtf("ERREUR DE MERDE", exception);
+        switch(data){
+            case "plat":
+                Cursor c =sauvegardeShotsDB.getAllDataPlats();
+                String[] table = new String[] {GestionDBhelper.PLAT_ID, GestionDBhelper.PLAT_LIBELLE};
+                int[] tableInt = new int[] {R.id.commentaire, R.id.nom_fichier};
+
+                try {
+                    ListAdapter adapter = new SimpleCursorAdapter(this,
+                            R.layout.affichage_ligne_base, c,
+                            table, tableInt, 1
+                    );
+                    ((ListView)findViewById(R.id.ListViewDB)).setAdapter(adapter);
+                }catch (Exception exception){
+                    Log.wtf("ERREUR DE MERDE", exception);
+                }
+
+                break;
         }
-        // Bind to our new adapter.
+
 
         sauvegardeShotsDB.close();
     }
