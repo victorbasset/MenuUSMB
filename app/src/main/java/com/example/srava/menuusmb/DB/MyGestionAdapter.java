@@ -101,11 +101,39 @@ public class MyGestionAdapter {
                     null)>0;
         }*/
 
-        public Cursor getAllData(){
+        public Cursor getAllDataPlats(){
             Cursor c= gestionDB.query(GestionDBhelper.PLAT_TABLE, new String[]{
-                            GestionDBhelper.PLAT_ID,GestionDBhelper.PLAT_LIBELLE},
+                            GestionDBhelper.PLAT_ID,GestionDBhelper.PLAT_LIBELLE,GestionDBhelper.PLAT_ID_CAT,GestionDBhelper.PLAT_ID_REST,GestionDBhelper.PLAT_JOUR,GestionDBhelper.PLAT_PRIX,GestionDBhelper.PLAT_ID_PLAT},
                     null, null, null, null, null);
-            Log.wtf("azerty",  Integer.toString(c.getCount()));
+            Log.wtf("GetAllDataPlats count",  Integer.toString(c.getCount()));
+            return  c;
+        }
+        public Cursor getAllDataRestaurants(){
+            Cursor c= gestionDB.query(GestionDBhelper.RESTAURANT_TABLE, new String[]{
+                            GestionDBhelper.RESTAURANT_ID,GestionDBhelper.RESTAURANT_LIBELLE,GestionDBhelper.RESTAURANT_ID_RESTAURANT},
+                    null, null, null, null, null);
+            Log.wtf("GetAllDataRestos count",  Integer.toString(c.getCount()));
+            return  c;
+        }
+        public Cursor getAllDataCategories(){
+            Cursor c= gestionDB.query(GestionDBhelper.CATEGORIE_TABLE, new String[]{
+                            GestionDBhelper.CATEGORIE_ID,GestionDBhelper.CATEGORIE_ID_CATEGORIE,GestionDBhelper.CATEGORIE_LIBELLE},
+                    null, null, null, null, null);
+            Log.wtf("GetAllDataCateg count",  Integer.toString(c.getCount()));
+            return  c;
+        }
+        public Cursor getAllDataNotesPlats(){
+            Cursor c= gestionDB.query(GestionDBhelper.NOTE_PLAT_TABLE, new String[]{
+                            GestionDBhelper.NOTE_PLAT_ID,GestionDBhelper.NOTE_PLAT_ID_NOTE_PLAT,GestionDBhelper.NOTE_PLAT_COMMENTAIRE,GestionDBhelper.NOTE_PLAT_DATE,GestionDBhelper.NOTE_PLAT_NOTE,GestionDBhelper.NOTE_PLAT_ID_PLAT},
+                    null, null, null, null, null);
+            Log.wtf("GetAllDataNotePlat count",  Integer.toString(c.getCount()));
+            return  c;
+        }
+        public Cursor getAllDataNotesRestaurants(){
+            Cursor c= gestionDB.query(GestionDBhelper.NOTE_RESTAURANT_TABLE, new String[]{
+                            GestionDBhelper.NOTE_RESTAURANT_ID,GestionDBhelper.NOTE_RESTAURANT_ID_NOTE_RESTAURANT,GestionDBhelper.NOTE_RESTAURANT_COMMENTAIRE,GestionDBhelper.NOTE_RESTAURANT_DATE,GestionDBhelper.NOTE_RESTAURANT_NOTE,GestionDBhelper.NOTE_RESTAURANT_ID_RESTAURANT},
+                    null, null, null, null, null);
+            Log.wtf("GetAllDataNoteResto count",  Integer.toString(c.getCount()));
             return  c;
         }
        /* public Cursor getSingleShot(long ligneID){
