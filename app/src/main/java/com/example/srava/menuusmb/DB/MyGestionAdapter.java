@@ -17,7 +17,7 @@ public class MyGestionAdapter {
         private static final String DATABASE_NAME = "maBase31.db";
         private static final int DATABASE_VERSION = 2;
         private SQLiteDatabase gestionDB; // reference vers une base de données
-        private GestionDBhelper dbHelper; // référence vers le Helper de gestion de la base
+        public GestionDBhelper dbHelper; // référence vers le Helper de gestion de la base
 
 
         public MyGestionAdapter(Context context) { // constructeur
@@ -38,6 +38,8 @@ public class MyGestionAdapter {
             Log.i("MyShotsAdapter", "close: demande de fermeture de la base");
             dbHelper.close();
         } // fermeture de la base
+
+
 
         public long insertPlat(int id_plat, String libelle_plat, float prix,int id_categorie,int id_restaurant,String jour){
             ContentValues newValue;

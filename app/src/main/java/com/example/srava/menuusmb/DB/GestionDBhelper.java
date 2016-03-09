@@ -108,4 +108,16 @@ public class GestionDBhelper extends SQLiteOpenHelper {
         Log.i("ShotsDBhelper", "Base mise a jour !!!");
         onCreate(db);
     }
+
+    public void onReset(SQLiteDatabase db) {
+// destruction de la base et recreation
+        db.execSQL("DROP TABLE IF EXISTS RESTAURANT");
+        db.execSQL("DROP TABLE IF EXISTS PLAT");
+        db.execSQL("DROP TABLE IF EXISTS CATEGORIE_PLAT");
+        db.execSQL("DROP TABLE IF EXISTS NOTE_PLAT");
+        db.execSQL("DROP TABLE IF EXISTS NOTE_RESTAURANT");
+
+        Log.i("ShotsDBhelper", "Base mise a jour !!!");
+        onCreate(db);
+    }
 }
