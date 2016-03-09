@@ -52,7 +52,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         Log.wtf("", "Creation de base");
         sauvegardeShotsDB= new MyGestionAdapter(getBaseContext());
 
-        populate("plat");
+        populate("categorie");
     }
 
     @Override
@@ -82,7 +82,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         if (v.getId() == R.id.button) {
         sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
        //     sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
-            recupData("plat");
+            recupData("categorie_plat");
             threadPopulate();
 
         }
@@ -111,7 +111,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                populate("plat");
+                                populate("categorie");
                                 if(progressBar.getProgress() == 100) {
 
                                     interrupt();
@@ -130,12 +130,78 @@ public class MenuActivity extends Activity implements View.OnClickListener {
 
     sauvegardeShotsDB.open();
     Log.wtf("Populate","Populate");
-
+        Cursor c;
+        String[] table;
+        int[] tableInt;
         switch(data){
             case "plat":
-                Cursor c =sauvegardeShotsDB.getAllDataPlats();
-                String[] table = new String[] {GestionDBhelper.PLAT_ID, GestionDBhelper.PLAT_LIBELLE};
-                int[] tableInt = new int[] {R.id.commentaire, R.id.nom_fichier};
+                c =sauvegardeShotsDB.getAllDataPlats();
+                table = new String[] {GestionDBhelper.PLAT_ID, GestionDBhelper.PLAT_LIBELLE};
+                tableInt = new int[] {R.id.commentaire, R.id.nom_fichier};
+
+                try {
+                    ListAdapter adapter = new SimpleCursorAdapter(this,
+                            R.layout.affichage_ligne_base, c,
+                            table, tableInt, 1
+                    );
+                    ((ListView)findViewById(R.id.ListViewDB)).setAdapter(adapter);
+                }catch (Exception exception){
+                    Log.wtf("ERREUR DE MERDE", exception);
+                }
+
+                break;
+            case "restaurant":
+                c =sauvegardeShotsDB.getAllDataRestaurants();
+                table = new String[] {GestionDBhelper.RESTAURANT_ID_RESTAURANT, GestionDBhelper.RESTAURANT_LIBELLE};
+                tableInt = new int[] {R.id.commentaire, R.id.nom_fichier};
+
+                try {
+                    ListAdapter adapter = new SimpleCursorAdapter(this,
+                            R.layout.affichage_ligne_base, c,
+                            table, tableInt, 1
+                    );
+                    ((ListView)findViewById(R.id.ListViewDB)).setAdapter(adapter);
+                }catch (Exception exception){
+                    Log.wtf("ERREUR DE MERDE", exception);
+                }
+
+                break;
+            case "categorie":
+                c =sauvegardeShotsDB.getAllDataCategories();
+                table = new String[] {GestionDBhelper.CATEGORIE_ID_CATEGORIE, GestionDBhelper.CATEGORIE_LIBELLE};
+                tableInt = new int[] {R.id.commentaire, R.id.nom_fichier};
+
+                try {
+                    ListAdapter adapter = new SimpleCursorAdapter(this,
+                            R.layout.affichage_ligne_base, c,
+                            table, tableInt, 1
+                    );
+                    ((ListView)findViewById(R.id.ListViewDB)).setAdapter(adapter);
+                }catch (Exception exception){
+                    Log.wtf("ERREUR DE MERDE", exception);
+                }
+
+                break;
+            case "notePlat":
+                c =sauvegardeShotsDB.getAllDataPlats();
+                table = new String[] {GestionDBhelper.NOTE_PLAT_ID_NOTE_PLAT, GestionDBhelper.NOTE_PLAT_ID_PLAT, GestionDBhelper.NOTE_PLAT_NOTE, GestionDBhelper.NOTE_PLAT_COMMENTAIRE, GestionDBhelper.NOTE_PLAT_DATE};
+                tableInt = new int[] {R.id.commentaire, R.id.nom_fichier};
+
+                try {
+                    ListAdapter adapter = new SimpleCursorAdapter(this,
+                            R.layout.affichage_ligne_base, c,
+                            table, tableInt, 1
+                    );
+                    ((ListView)findViewById(R.id.ListViewDB)).setAdapter(adapter);
+                }catch (Exception exception){
+                    Log.wtf("ERREUR DE MERDE", exception);
+                }
+
+                break;
+            case "noteRestaurant":
+                c =sauvegardeShotsDB.getAllDataPlats();
+                table = new String[] {GestionDBhelper.NOTE_RESTAURANT_ID_NOTE_RESTAURANT, GestionDBhelper.NOTE_RESTAURANT_ID_RESTAURANT, GestionDBhelper.NOTE_RESTAURANT_NOTE, GestionDBhelper.NOTE_RESTAURANT_COMMENTAIRE, GestionDBhelper.NOTE_RESTAURANT_DATE};
+                tableInt = new int[] {R.id.commentaire, R.id.nom_fichier};
 
                 try {
                     ListAdapter adapter = new SimpleCursorAdapter(this,
