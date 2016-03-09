@@ -52,7 +52,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         Log.wtf("", "Creation de base");
         sauvegardeShotsDB= new MyGestionAdapter(getBaseContext());
 
-
+        populate();
     }
 
     @Override
@@ -82,44 +82,49 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         if (v.getId() == R.id.button) {
         sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
        //     sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
-            final TextView connectionStatus = (TextView) findViewById(R.id.status );
-
-            // Instanciation de la tâche asynchrone
-            HttpRequestTaskManager result = new HttpRequestTaskManager();
-
-            result.setConnectionStatus(connectionStatus);
-            // On lui passe la progressBar et le texte de connectionStatus
-            result.setProgressBar(progressBar);
-            result.execute(new Post("plat"));
-
-            Thread t = new Thread() {
-
-                @Override
-                public void run() {
-                    try {
-                        while (!isInterrupted()) {
-                            Thread.sleep(1000);
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    populate();
-                                    if(progressBar.getProgress() == 100) {
-
-                                        interrupt();
-                                    }
-                                }
-                            });
-                        }
-                    } catch (InterruptedException e) {
-                    }
-                }
-            };
-
-            t.start();
-
+            recupData("plat");
+            threadPopulate();
 
         }
 
+    }
+
+    private void recupData(String type) {
+        final TextView connectionStatus = (TextView) findViewById(R.id.status );
+
+        // Instanciation de la tâche asynchrone
+        HttpRequestTaskManager result = new HttpRequestTaskManager();
+
+        result.setConnectionStatus(connectionStatus);
+        // On lui passe la progressBar et le texte de connectionStatus
+        result.setProgressBar(progressBar);
+        result.execute(new Post(type));
+    }
+    private void threadPopulate(){
+        Thread t = new Thread() {
+
+            @Override
+            public void run() {
+                try {
+                    while (!isInterrupted()) {
+                        Thread.sleep(1000);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                populate();
+                                if(progressBar.getProgress() == 100) {
+
+                                    interrupt();
+                                }
+                            }
+                        });
+                    }
+                } catch (InterruptedException e) {
+                }
+            }
+        };
+
+        t.start();
     }
     private void populate(){
 
