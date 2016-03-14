@@ -115,7 +115,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
             recupData("restaurant");
 
             threadPopulate();
-
+            LinkTables();
         }
 
     }
