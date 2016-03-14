@@ -1,6 +1,7 @@
 package com.example.srava.menuusmb;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
@@ -8,8 +9,14 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.RelativeLayout.LayoutParams;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+
+import com.example.srava.menuusmb.DB.GestionDBhelper;
+import com.example.srava.menuusmb.DB.MyGestionAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,6 +30,7 @@ public class VerticalPagerAdapter extends PagerAdapter{
     private int mParent;
     private int mChilds;
     private JSONArray mColors;
+
 
     public VerticalPagerAdapter(Context c, int parent, int childs){
         mContext = c;
@@ -87,7 +95,7 @@ public class VerticalPagerAdapter extends PagerAdapter{
 
         if(position == 1) {
             tvChild.setText("Lundi");
-            tvEntreDB.setText("entree string Lundi");
+            tvEntreDB.setText("entree string Lundi 1");
             tvPlatDB.setText("plat string Lundi");
             tvDessertDB.setText("dessert string Lundi");
         }
@@ -147,6 +155,7 @@ public class VerticalPagerAdapter extends PagerAdapter{
         tvDessert.setTextSize(15);
         linear.addView(tvDessert);
 
+        Log.wtf("instantiate","");
 
         linear.addView(tvDessertDB);
 
@@ -183,4 +192,6 @@ public class VerticalPagerAdapter extends PagerAdapter{
             ex.printStackTrace();
         }
     }
+
+
 }

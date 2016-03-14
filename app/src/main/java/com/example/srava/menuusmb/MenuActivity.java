@@ -20,12 +20,16 @@ import android.widget.ProgressBar;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
+import com.example.srava.menuusmb.Class.Categorie;
+import com.example.srava.menuusmb.Class.Categories;
 import com.example.srava.menuusmb.Class.NoteRestaurant;
 import com.example.srava.menuusmb.Class.NoteRestaurants;
 import com.example.srava.menuusmb.Class.NotesPlat;
 import com.example.srava.menuusmb.Class.NotesPlats;
 import com.example.srava.menuusmb.Class.Plat;
 import com.example.srava.menuusmb.Class.Plats;
+import com.example.srava.menuusmb.Class.Restaurant;
+import com.example.srava.menuusmb.Class.Restaurants;
 import com.example.srava.menuusmb.DB.GestionDBhelper;
 import com.example.srava.menuusmb.DB.MyGestionAdapter;
 
@@ -35,6 +39,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.List;
 
 import android.support.v4.view.PagerAdapter;
 import com.emoiluj.doubleviewpager.DoubleViewPager;
@@ -73,7 +78,11 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         connect.setOnClickListener(this);
         Log.wtf("", "Creation de base");
         sauvegardeShotsDB= new MyGestionAdapter(getBaseContext());
-
+        Plats plats= new Plats();
+        Restaurants r = new Restaurants();
+        Categories c=new Categories();
+        NoteRestaurants nr = new NoteRestaurants();
+        NotesPlats np=new NotesPlats();
         populate("categorie");
         populate("plat");
         populate("restaurant");
@@ -172,83 +181,44 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         switch(data){
             case "plat":
                 c =sauvegardeShotsDB.getAllDataPlats();
-                table = new String[] {GestionDBhelper.PLAT_ID, GestionDBhelper.PLAT_LIBELLE};
-                tableInt = new int[] {R.id.commentaire, R.id.nom_fichier};
-
-                try {
-                    ListAdapter adapter = new SimpleCursorAdapter(this,
-                            R.layout.affichage_ligne_base, c,
-                            table, tableInt, 1
-                    );
-                    ((ListView)findViewById(R.id.ListViewDB)).setAdapter(adapter);
-                }catch (Exception exception){
-                    Log.wtf("erreur populate plat", exception);
+                for(int i = 1; i <= c.getCount(); i++)
+                {
+                    c.moveToFirst();
+                    Plat p = new Plat(c.getString(c.getColumnIndex(GestionDBhelper.PLAT_ID_PLAT)),c.getString(c.getColumnIndex(GestionDBhelper.PLAT_LIBELLE)),c.getString(c.getColumnIndex(GestionDBhelper.PLAT_PRIX)),c.getString(c.getColumnIndex(GestionDBhelper.PLAT_ID_CAT)),c.getString(c.getColumnIndex(GestionDBhelper.PLAT_ID_REST)),c.getString(c.getColumnIndex(GestionDBhelper.PLAT_JOUR)));
+                    Plats.listePlats.add(p);
                 }
-
                 break;
             case "restaurant":
                 c =sauvegardeShotsDB.getAllDataRestaurants();
-                table = new String[] {GestionDBhelper.RESTAURANT_ID_RESTAURANT, GestionDBhelper.RESTAURANT_LIBELLE};
-                tableInt = new int[] {R.id.commentaire, R.id.nom_fichier};
-
-                try {
-                    ListAdapter adapter = new SimpleCursorAdapter(this,
-                            R.layout.affichage_ligne_base, c,
-                            table, tableInt, 1
-                    );
-                    ((ListView)findViewById(R.id.ListViewDB)).setAdapter(adapter);
-                }catch (Exception exception){
-                    Log.wtf("erreur populate restaurant", exception);
+                for(int i = 1; i <= c.getCount(); i++)
+                {
+                    c.moveToFirst();
+                    Restaurants.listeRestaurants.add(new Restaurant(c.getString(c.getColumnIndex(GestionDBhelper.RESTAURANT_ID_RESTAURANT)), c.getString(c.getColumnIndex(GestionDBhelper.RESTAURANT_LIBELLE))));
                 }
-
                 break;
             case "categorie":
                 c =sauvegardeShotsDB.getAllDataCategories();
-                table = new String[] {GestionDBhelper.CATEGORIE_ID_CATEGORIE, GestionDBhelper.CATEGORIE_LIBELLE};
-                tableInt = new int[] {R.id.commentaire, R.id.nom_fichier};
-
-                try {
-                    ListAdapter adapter = new SimpleCursorAdapter(this,
-                            R.layout.affichage_ligne_base, c,
-                            table, tableInt, 1
-                    );
-                    ((ListView)findViewById(R.id.ListViewDB)).setAdapter(adapter);
-                }catch (Exception exception){
-                    Log.wtf("erreur populate categorie", exception);
+                for(int i = 1; i <= c.getCount(); i++)
+                {
+                    c.moveToFirst();
+                    Categories.listeCategories.add(new Categorie(c.getString(c.getColumnIndex(GestionDBhelper.CATEGORIE_ID_CATEGORIE)),c.getString(c.getColumnIndex(GestionDBhelper.CATEGORIE_LIBELLE))));
                 }
-
                 break;
             case "notePlat":
-                c =sauvegardeShotsDB.getAllDataPlats();
-                table = new String[] {GestionDBhelper.NOTE_PLAT_ID_NOTE_PLAT, GestionDBhelper.NOTE_PLAT_ID_PLAT, GestionDBhelper.NOTE_PLAT_NOTE, GestionDBhelper.NOTE_PLAT_COMMENTAIRE, GestionDBhelper.NOTE_PLAT_DATE};
-                tableInt = new int[] {R.id.commentaire, R.id.nom_fichier,1,2,3};
-
-                try {
-                    ListAdapter adapter = new SimpleCursorAdapter(this,
-                            R.layout.affichage_ligne_base, c,
-                            table, tableInt, 1
-                    );
-                    ((ListView)findViewById(R.id.ListViewDB)).setAdapter(adapter);
-                }catch (Exception exception){
-                    Log.wtf("erreur populate note plat", exception);
+                c =sauvegardeShotsDB.getAllDataNotesPlats();
+                for(int i = 1; i <= c.getCount(); i++)
+                {
+                    c.moveToFirst();
+                    NotesPlats.listeNotesPlats.add(new NotesPlat(c.getString(c.getColumnIndex(GestionDBhelper.NOTE_PLAT_ID_NOTE_PLAT)),c.getInt(c.getColumnIndex(GestionDBhelper.NOTE_PLAT_NOTE)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_PLAT_ID_PLAT)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_PLAT_COMMENTAIRE)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_PLAT_DATE))));
                 }
-
                 break;
             case "noteRestaurant":
-                c =sauvegardeShotsDB.getAllDataPlats();
-                table = new String[] {GestionDBhelper.NOTE_RESTAURANT_ID_NOTE_RESTAURANT, GestionDBhelper.NOTE_RESTAURANT_ID_RESTAURANT, GestionDBhelper.NOTE_RESTAURANT_NOTE, GestionDBhelper.NOTE_RESTAURANT_COMMENTAIRE, GestionDBhelper.NOTE_RESTAURANT_DATE};
-                tableInt = new int[] {R.id.commentaire, R.id.nom_fichier};
-
-                try {
-                    ListAdapter adapter = new SimpleCursorAdapter(this,
-                            R.layout.affichage_ligne_base, c,
-                            table, tableInt, 1
-                    );
-                    ((ListView)findViewById(R.id.ListViewDB)).setAdapter(adapter);
-                }catch (Exception exception){
-                    Log.wtf("erreur populate note restaurant", exception);
+                c =sauvegardeShotsDB.getAllDataNotesRestaurants();
+                for(int i = 1; i <= c.getCount(); i++)
+                {
+                    c.moveToFirst();
+                    NoteRestaurants.listeNoteRestaurants.add(new NoteRestaurant(c.getString(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_ID_RESTAURANT)),c.getInt(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_NOTE)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_ID_RESTAURANT)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_COMMENTAIRE)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_DATE))));
                 }
-
                 break;
         }
 
