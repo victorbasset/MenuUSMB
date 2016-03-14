@@ -2,15 +2,18 @@ package com.example.srava.menuusmb;
 
 import android.app.Activity;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -27,6 +30,11 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+
+import android.support.v4.view.PagerAdapter;
+import com.emoiluj.doubleviewpager.DoubleViewPager;
+import com.emoiluj.doubleviewpager.DoubleViewPagerAdapter;
 
 
 public class MenuActivity extends Activity implements View.OnClickListener {
@@ -34,18 +42,28 @@ public class MenuActivity extends Activity implements View.OnClickListener {
     ProgressBar progressBar;
     public static MyGestionAdapter sauvegardeShotsDB;
     public static Cursor shotsDBcursor;
+    private DoubleViewPager viewpager;
+    private int horizontalChilds;
+    private int verticalChilds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.activity_main);
+        horizontalChilds = 4;
+        verticalChilds = 5;
+        loadUI();
+        TextView tvTitre = (TextView) findViewById(R.id.tvTitre);
+        Typeface type = Typeface.createFromAsset(getAssets(), "DJB.ttf");
+        tvTitre.setTypeface(type);
 
 
         // Récuperation de la progressBar par l'id
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         //Récupération du boutton par l'id
-        final Button connect = (Button) findViewById(R.id.button);
+        final ImageButton connect = (ImageButton) findViewById(R.id.refresh);
 
         //Set le listener sur le boutton
         connect.setOnClickListener(this);
@@ -83,7 +101,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.button) {
+        if (v.getId() == R.id.refresh) {
         sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
        //     sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
             recupData("notePlat");
@@ -231,5 +249,19 @@ public class MenuActivity extends Activity implements View.OnClickListener {
 
 
         sauvegardeShotsDB.close();
+    }
+    private void loadUI() {
+
+        ArrayList<PagerAdapter> verticalAdapters = new ArrayList<PagerAdapter>();
+        generateVerticalAdapters(verticalAdapters);
+
+        viewpager = (DoubleViewPager) findViewById(R.id.pager);
+        viewpager.setAdapter(new DoubleViewPagerAdapter(getApplicationContext(), verticalAdapters));
+    }
+
+    private void generateVerticalAdapters(ArrayList<PagerAdapter> verticalAdapters) {
+        for (int i=0; i<horizontalChilds; i++){
+            verticalAdapters.add(new VerticalPagerAdapter(this, i, verticalChilds));
+        }
     }
 }
