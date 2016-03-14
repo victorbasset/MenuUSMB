@@ -200,6 +200,7 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
                             MenuActivity.sauvegardeShotsDB.insertNoteRestaurant(id_noterestaurant, note, noteRestaurant.commentaire, noteRestaurant.date, id_restaurant);
                         }
                         MenuActivity.sauvegardeShotsDB.close();
+                        LinkTables();
                         publishProgress(100);
                         break;
                 }
@@ -286,6 +287,17 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
                     array.getJSONObject(i).getString("id_restaurant")));
         }
         return noteRestaurants;
+    }
+    public void LinkTables(){
+        for (Plat p : Plats.listePlats){
+            p.LinkTables();
+        }
+        for(NoteRestaurant nr : NoteRestaurants.listeNoteRestaurants){
+            nr.LinkTables();
+        }
+        for(NotesPlat np : NotesPlats.listeNotesPlats){
+            np.LinkTables();
+        }
     }
 }
 

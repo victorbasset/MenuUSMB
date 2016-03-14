@@ -108,14 +108,15 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         if (v.getId() == R.id.refresh) {
         sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
        //     sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
-            recupData("notePlat");
-            recupData("noteRestaurant");
+
             recupData("categorie");
             recupData("plat");
             recupData("restaurant");
+            recupData("notePlat");
+            recupData("noteRestaurant");
 
             threadPopulate();
-            LinkTables();
+
         }
 
     }
@@ -269,15 +270,5 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         }
     }
 
-    public void LinkTables(){
-        for (Plat p : Plats.listePlats){
-            p.LinkTables();
-        }
-        for(NoteRestaurant nr : NoteRestaurants.listeNoteRestaurants){
-            nr.LinkTables();
-        }
-        for(NotesPlat np : NotesPlats.listeNotesPlats){
-            np.LinkTables();
-        }
-    }
+
 }
