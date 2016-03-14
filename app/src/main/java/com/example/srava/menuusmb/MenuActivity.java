@@ -20,6 +20,10 @@ import android.widget.ProgressBar;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
+import com.example.srava.menuusmb.Class.NoteRestaurant;
+import com.example.srava.menuusmb.Class.NoteRestaurants;
+import com.example.srava.menuusmb.Class.NotesPlat;
+import com.example.srava.menuusmb.Class.NotesPlats;
 import com.example.srava.menuusmb.Class.Plat;
 import com.example.srava.menuusmb.Class.Plats;
 import com.example.srava.menuusmb.DB.GestionDBhelper;
@@ -262,6 +266,18 @@ public class MenuActivity extends Activity implements View.OnClickListener {
     private void generateVerticalAdapters(ArrayList<PagerAdapter> verticalAdapters) {
         for (int i=0; i<horizontalChilds; i++){
             verticalAdapters.add(new VerticalPagerAdapter(this, i, verticalChilds));
+        }
+    }
+
+    public void LinkTables(){
+        for (Plat p : Plats.listePlats){
+            p.LinkTables();
+        }
+        for(NoteRestaurant nr : NoteRestaurants.listeNoteRestaurants){
+            nr.LinkTables();
+        }
+        for(NotesPlat np : NotesPlats.listeNotesPlats){
+            np.LinkTables();
         }
     }
 }
