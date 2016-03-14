@@ -60,12 +60,6 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-        horizontalChilds = 4;
-        verticalChilds = 5;
-        loadUI();
-        TextView tvTitre = (TextView) findViewById(R.id.tvTitre);
-        Typeface type = Typeface.createFromAsset(getAssets(), "DJB.ttf");
-        tvTitre.setTypeface(type);
 
 
         // Récuperation de la progressBar par l'id
@@ -88,6 +82,14 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         populate("restaurant");
         populate("notePlat");
         populate("noteRestaurant");
+
+        horizontalChilds = 4;
+        verticalChilds = 5;
+        loadUI();
+        TextView tvTitre = (TextView) findViewById(R.id.tvTitre);
+        Typeface type = Typeface.createFromAsset(getAssets(), "DJB.ttf");
+        tvTitre.setTypeface(type);
+
     }
 
     @Override

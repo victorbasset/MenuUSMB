@@ -98,6 +98,7 @@ public class VerticalPagerAdapter extends PagerAdapter{
             tvEntreDB.setText("entree string Lundi 1");
             tvPlatDB.setText("plat string Lundi");
             tvDessertDB.setText("dessert string Lundi");
+
         }
         if(position == 2) {
             tvChild.setText("Mardi");
