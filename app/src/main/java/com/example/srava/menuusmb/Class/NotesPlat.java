@@ -11,6 +11,7 @@ public class NotesPlat {
     public String commentaire;
     public String date;
     public String id_plat;
+    public Plat plat;
 
     public NotesPlat() {
     }
@@ -21,6 +22,13 @@ public class NotesPlat {
         this.commentaire=commentaire;
         this.date=date;
         this.id_plat=id_plat;
+    }
+
+    public void LinkTables(){
+        for (Plat p : Plats.listePlats){
+            if(this.id_plat==p.id_plat)
+                this.plat=p;
+        }
     }
 
     @Override

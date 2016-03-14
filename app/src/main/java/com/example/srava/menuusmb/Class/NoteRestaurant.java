@@ -11,6 +11,7 @@ public class NoteRestaurant {
     public String commentaire;
     public String date;
     public String id_restaurant;
+    public Restaurant restaurant;
 
     public NoteRestaurant() {
     }
@@ -22,6 +23,13 @@ public class NoteRestaurant {
         this.date=date;
         this.id_restaurant=id_restaurant;
 
+    }
+
+    public void LinkTables(){
+        for (Restaurant r : Restaurants.listeRestaurants){
+            if(this.id_restaurant==r.id_restaurant)
+                this.restaurant=r;
+        }
     }
 
     @Override
