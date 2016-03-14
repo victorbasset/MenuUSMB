@@ -265,7 +265,7 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
         JSONObject obj = new JSONObject(chaineJson);
         JSONArray array = obj.getJSONArray("message");
         for(int i = 0 ; i < array.length() ; i++){
-            notesPlats.listeNotesPlats.add(new NotesPlat(array.getJSONObject(i).getString("id_note"),
+            notesPlats.listeNotesPlats.add(new NotesPlat(array.getJSONObject(i).getString("id_note_plat"),
                     array.getJSONObject(i).getInt("note"),
                     array.getJSONObject(i).getString("commentaire"),
                     array.getJSONObject(i).getString("date"),
@@ -279,7 +279,7 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
         JSONObject obj = new JSONObject(chaineJson);
         JSONArray array = obj.getJSONArray("message");
         for(int i = 0 ; i < array.length() ; i++){
-            noteRestaurants.listeNoteRestaurants.add(new NoteRestaurant(array.getJSONObject(i).getString("id_note"),
+            noteRestaurants.listeNoteRestaurants.add(new NoteRestaurant(array.getJSONObject(i).getString("id_note_restaurant"),
                     array.getJSONObject(i).getInt("note"),
                     array.getJSONObject(i).getString("commentaire"),
                     array.getJSONObject(i).getString("date"),
