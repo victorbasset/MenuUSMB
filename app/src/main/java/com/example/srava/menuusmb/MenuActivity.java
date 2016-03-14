@@ -83,6 +83,10 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         populate("notePlat");
         populate("noteRestaurant");
 
+
+        if(Plats.listePlats.get(0).libelle_plat==null)
+            Initialisation();
+
         horizontalChilds = 4;
         verticalChilds = 5;
         loadUI();
@@ -117,6 +121,12 @@ public class MenuActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.refresh) {
+            Initialisation();
+        }
+    }
+
+    private void Initialisation() {
+
         sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
        //     sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
 
@@ -128,7 +138,6 @@ public class MenuActivity extends Activity implements View.OnClickListener {
 
             threadPopulate();
 
-        }
 
     }
 
