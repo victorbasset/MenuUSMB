@@ -86,11 +86,12 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         if (v.getId() == R.id.button) {
         sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
        //     sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
+            recupData("notePlat");
+            recupData("noteRestaurant");
             recupData("categorie");
             recupData("plat");
             recupData("restaurant");
-            recupData("notePlat");
-            recupData("noteRestaurant");
+
             threadPopulate();
 
         }

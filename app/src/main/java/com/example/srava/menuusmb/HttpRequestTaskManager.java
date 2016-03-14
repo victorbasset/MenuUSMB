@@ -107,7 +107,7 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
         }  catch (IOException e) {
             Log.e("IOException", "Error"+e);
         }  catch(JSONException e){
-            Log.e("JSONException", "Error"+e);
+            Log.e("JSONException recup", "Error"+e);
         }  catch (NetworkOnMainThreadException e){
             connectionStatus.setText("Marche pas si android > 3.0!!");
         }
@@ -177,10 +177,10 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
                     case "notePlat":
                         NotesPlats np = deserializeNotesPlats(result.toString());
                         connectionStatus.setText(np.listeNotesPlats.toString());
-                        publishProgress(75);
+                        publishProgress(90);
                         MenuActivity.sauvegardeShotsDB.open();
                         for(NotesPlat noteplat : np.listeNotesPlats){
-                            int id_noteplat= Integer.parseInt(noteplat.id_note);
+                            int id_noteplat= Integer.parseInt(noteplat.id_note_plat);
                             int note= noteplat.note;
                             int id_plat=Integer.parseInt(noteplat.id_plat);
                             MenuActivity.sauvegardeShotsDB.insertNotePlat(id_noteplat, note, noteplat.commentaire, noteplat.date, id_plat);
@@ -191,13 +191,13 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
                     case "noteRestaurant":
                         NoteRestaurants nr = deserializeNotesRestaurants(result.toString());
                         connectionStatus.setText(nr.listeNoteRestaurants.toString());
-                        publishProgress(75);
+                        publishProgress(90);
                         MenuActivity.sauvegardeShotsDB.open();
                         for(NoteRestaurant noteRestaurant : nr.listeNoteRestaurants){
-                            int id_noterestaurant= Integer.parseInt(noteRestaurant._id_note);
-                            int note= noteRestaurant._note;
-                            int id_restaurant=Integer.parseInt(noteRestaurant._id_restaurant);
-                            MenuActivity.sauvegardeShotsDB.insertNoteRestaurant(id_noterestaurant, note, noteRestaurant._commentaire, noteRestaurant._date, id_restaurant);
+                            int id_noterestaurant= Integer.parseInt(noteRestaurant.id_note_restaurant);
+                            int note= noteRestaurant.note;
+                            int id_restaurant=Integer.parseInt(noteRestaurant.id_restaurant);
+                            MenuActivity.sauvegardeShotsDB.insertNoteRestaurant(id_noterestaurant, note, noteRestaurant.commentaire, noteRestaurant.date, id_restaurant);
                         }
                         MenuActivity.sauvegardeShotsDB.close();
                         publishProgress(100);
@@ -212,7 +212,7 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
             }
             //Gestion des erreurs et expections
         }  catch(JSONException e){
-            Log.e("JSONException", "Error" +e);
+            Log.e("JSONException Insert", "Error" +e);
         }  catch (NetworkOnMainThreadException e) {
             Log.e("ThreadException", "android > 3.0!!");
         }
