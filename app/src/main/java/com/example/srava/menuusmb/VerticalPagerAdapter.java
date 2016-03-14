@@ -89,8 +89,9 @@ public class VerticalPagerAdapter extends PagerAdapter{
 
         if(position == 1) {
             tvChild.setText("Lundi");
+            Log.wtf("",Plats.listePlats.toString() );
             tvEntreDB.setText(Plats.listePlats.get(0).libelle_plat);
-            tvPlatDB.setText("plat string Lundi");
+            tvPlatDB.setText(Plats.listePlats.get(1).libelle_plat);
             tvDessertDB.setText("dessert string Lundi");
 
         }

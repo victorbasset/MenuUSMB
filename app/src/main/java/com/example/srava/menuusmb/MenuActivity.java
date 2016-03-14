@@ -192,11 +192,13 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         switch(data){
             case "plat":
                 c =sauvegardeShotsDB.getAllDataPlats();
+                c.moveToFirst();
                 for(int i = 1; i <= c.getCount(); i++)
                 {
-                    c.moveToFirst();
+
                     Plat p = new Plat(c.getString(c.getColumnIndex(GestionDBhelper.PLAT_ID_PLAT)),c.getString(c.getColumnIndex(GestionDBhelper.PLAT_LIBELLE)),c.getString(c.getColumnIndex(GestionDBhelper.PLAT_PRIX)),c.getString(c.getColumnIndex(GestionDBhelper.PLAT_ID_CAT)),c.getString(c.getColumnIndex(GestionDBhelper.PLAT_ID_REST)),c.getString(c.getColumnIndex(GestionDBhelper.PLAT_JOUR)));
                     Plats.listePlats.add(p);
+                    c.moveToLast();
                 }
                 break;
             case "restaurant":

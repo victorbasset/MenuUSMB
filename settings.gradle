@@ -1,1 +1,1 @@
-include ':app', ':DoubleViewPager', ':DoubleViewPagerSample'
+include ':DoubleViewPager',':DoubleViewPagerSample', ':app'
