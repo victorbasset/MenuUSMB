@@ -31,8 +31,8 @@ public class GestionDBhelper extends SQLiteOpenHelper {
 
     public static final String NOTE_PLAT_TABLE="NOTE_PLAT";
     public static final String NOTE_PLAT_ID="_id";
-    public static final String NOTE_PLAT_ID_PLAT="id_plat_plat";
-    public static final String NOTE_PLAT_ID_NOTE_PLAT="id_note";
+    public static final String NOTE_PLAT_ID_PLAT="id_plat";
+    public static final String NOTE_PLAT_ID_NOTE_PLAT="id_note_plat";
     public static final String NOTE_PLAT_NOTE="note";
     public static final String NOTE_PLAT_COMMENTAIRE="commentaire";
     public static final String NOTE_PLAT_DATE="date";

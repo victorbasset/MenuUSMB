@@ -122,8 +122,8 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                                 populate("categorie");
                                 populate("plat");
                                 populate("restaurant");
-                                populate("notePlat");
-                                populate("noteRestaurant");
+                                //populate("notePlat");
+                                //populate("noteRestaurant");
                                 if(progressBar.getProgress() == 100) {
 
                                     interrupt();
