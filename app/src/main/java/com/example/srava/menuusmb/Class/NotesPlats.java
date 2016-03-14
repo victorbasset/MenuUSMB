@@ -7,7 +7,7 @@ import java.util.List;
  * Created by modenaq on 01/03/2016.
  */
 public class NotesPlats {
-    public List<NotesPlat> listeNotesPlats;
+    public static List<NotesPlat> listeNotesPlats;
 
     public NotesPlats() {
         listeNotesPlats=new ArrayList<NotesPlat>();

@@ -7,7 +7,7 @@ import java.util.List;
  * Created by perezgoa on 01/03/2016.
  */
 public class Categories {
-    public List<Categorie> listeCategories;
+    public static List<Categorie> listeCategories;
 
     public Categories() {
         listeCategories=new ArrayList<Categorie>();
