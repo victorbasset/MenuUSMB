@@ -1,8 +1,11 @@
 package com.example.srava.menuusmb;
 
 import android.app.Activity;
+import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
@@ -125,7 +128,8 @@ public class MenuActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.refresh) {
-            Initialisation(true);
+            Log.wtf("WOLOLOLOWOLOLOLOWOLOLOLOWOLOLOLOWOLOLOLOWOLOLOLOWOLOLOLOWOLOLOLOWOLOLOLOWOLOLOLO","coucou"+isOnline());
+                    Initialisation(true);
         }
     }
 
@@ -260,6 +264,11 @@ public class MenuActivity extends Activity implements View.OnClickListener {
             verticalAdapters.add(new VerticalPagerAdapter(this, i, verticalChilds));
         }
     }
-
+    public boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
 
 }
