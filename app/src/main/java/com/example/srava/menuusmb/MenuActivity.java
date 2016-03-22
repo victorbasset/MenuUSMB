@@ -215,34 +215,38 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                 break;
             case "restaurant":
                 c =sauvegardeShotsDB.getAllDataRestaurants();
+                c.moveToFirst();
                 for(int i = 1; i <= c.getCount(); i++)
                 {
-                    c.moveToFirst();
                     Restaurants.listeRestaurants.add(new Restaurant(c.getString(c.getColumnIndex(GestionDBhelper.RESTAURANT_ID_RESTAURANT)), c.getString(c.getColumnIndex(GestionDBhelper.RESTAURANT_LIBELLE))));
+                    c.moveToLast();
                 }
                 break;
             case "categorie":
                 c =sauvegardeShotsDB.getAllDataCategories();
+                c.moveToFirst();
                 for(int i = 1; i <= c.getCount(); i++)
                 {
-                    c.moveToFirst();
                     Categories.listeCategories.add(new Categorie(c.getString(c.getColumnIndex(GestionDBhelper.CATEGORIE_ID_CATEGORIE)),c.getString(c.getColumnIndex(GestionDBhelper.CATEGORIE_LIBELLE))));
+                    c.moveToLast();
                 }
                 break;
             case "notePlat":
                 c =sauvegardeShotsDB.getAllDataNotesPlats();
+                c.moveToFirst();
                 for(int i = 1; i <= c.getCount(); i++)
                 {
-                    c.moveToFirst();
                     NotesPlats.listeNotesPlats.add(new NotesPlat(c.getString(c.getColumnIndex(GestionDBhelper.NOTE_PLAT_ID_NOTE_PLAT)),c.getInt(c.getColumnIndex(GestionDBhelper.NOTE_PLAT_NOTE)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_PLAT_ID_PLAT)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_PLAT_COMMENTAIRE)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_PLAT_DATE))));
+                    c.moveToLast();
                 }
                 break;
             case "noteRestaurant":
                 c = sauvegardeShotsDB.getAllDataNotesRestaurants();
+                c.moveToFirst();
                 for (int i = 1; i <= c.getCount(); i++) {
-                    c.moveToFirst();
                     NoteRestaurants.listeNoteRestaurants.add(new NoteRestaurant(c.getString(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_ID_RESTAURANT)), c.getInt(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_NOTE)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_ID_RESTAURANT)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_COMMENTAIRE)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_DATE))));
                     progressBar.setProgress(100);
+                    c.moveToLast();
                 }
                 break;
         }
