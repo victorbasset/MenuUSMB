@@ -87,39 +87,42 @@ public class VerticalPagerAdapter extends PagerAdapter{
         tvDessertDB.setTextColor(Color.WHITE);
         tvDessertDB.setTextSize(15);
 
-        if(position == 1) {
-            tvChild.setText("Lundi");
-            Log.wtf("",Plats.listePlats.toString() );
-            tvEntreDB.setText(Plats.listePlats.get(0).libelle_plat);
-            tvPlatDB.setText(Plats.listePlats.get(1).libelle_plat);
-            tvDessertDB.setText("dessert string Lundi");
+        if(!Plats.listePlats.isEmpty()) {
 
-        }
-        if(position == 2) {
-            tvChild.setText("Mardi");
-            tvEntreDB.setText("entree string Mardi");
-            tvPlatDB.setText("plat string Mardi");
-            tvDessertDB.setText("dessert string Mardi");
-        }
-        if(position == 3) {
-            tvChild.setText("Mercredi");
-            tvEntreDB.setText("entree string Mercredi");
-            tvPlatDB.setText("plat string Mercredi");
-            tvDessertDB.setText("dessert string Mercredi");
-        }
-        if(position == 4) {
-            tvChild.setText("Jeudi");
-            tvEntreDB.setText("entree string Jeudi");
-            tvPlatDB.setText("plat string Jeudi");
-            tvDessertDB.setText("dessert string Jeudi");
-        }
-        if(position == 5) {
-            tvChild.setText("Vendredi");
-            tvEntreDB.setText("entree string Vendredi");
-            tvPlatDB.setText("plat string Vendredi");
-            tvDessertDB.setText("dessert string Vendredi");
-        }
 
+            if (position == 1) {
+                tvChild.setText("Lundi");
+                Log.wtf("", Plats.listePlats.toString());
+                tvEntreDB.setText(Plats.listePlats.get(0).libelle_plat);
+                tvPlatDB.setText(Plats.listePlats.get(1).libelle_plat);
+                tvDessertDB.setText("dessert string Lundi");
+
+            }
+            if (position == 2) {
+                tvChild.setText("Mardi");
+                tvEntreDB.setText("entree string Mardi");
+                tvPlatDB.setText("plat string Mardi");
+                tvDessertDB.setText("dessert string Mardi");
+            }
+            if (position == 3) {
+                tvChild.setText("Mercredi");
+                tvEntreDB.setText("entree string Mercredi");
+                tvPlatDB.setText("plat string Mercredi");
+                tvDessertDB.setText("dessert string Mercredi");
+            }
+            if (position == 4) {
+                tvChild.setText("Jeudi");
+                tvEntreDB.setText("entree string Jeudi");
+                tvPlatDB.setText("plat string Jeudi");
+                tvDessertDB.setText("dessert string Jeudi");
+            }
+            if (position == 5) {
+                tvChild.setText("Vendredi");
+                tvEntreDB.setText("entree string Vendredi");
+                tvPlatDB.setText("plat string Vendredi");
+                tvDessertDB.setText("dessert string Vendredi");
+            }
+        }
         tvChild.setTextColor(Color.BLACK);
         tvChild.setTextSize(20);
         linear.addView(tvChild);

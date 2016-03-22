@@ -77,6 +77,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         Categories c=new Categories();
         NoteRestaurants nr = new NoteRestaurants();
         NotesPlats np=new NotesPlats();
+
         populate("categorie");
         populate("plat");
         populate("restaurant");
@@ -84,16 +85,23 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         populate("noteRestaurant");
 
 
-        if(Plats.listePlats.isEmpty())
-            Initialisation();
+        if (Plats.listePlats.isEmpty())
+            Initialisation(true);
+        else
+            Initialisation(false);
 
+
+
+
+    }
+
+    private void initialisationUI() {
         horizontalChilds = 4;
         verticalChilds = 5;
         loadUI();
         TextView tvTitre = (TextView) findViewById(R.id.tvTitre);
         Typeface type = Typeface.createFromAsset(getAssets(), "DJB.ttf");
         tvTitre.setTypeface(type);
-
     }
 
     @Override
@@ -121,22 +129,22 @@ public class MenuActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.refresh) {
-            Initialisation();
+            Initialisation(true);
         }
     }
 
-    private void Initialisation() {
+    private void Initialisation(Boolean etat) {
 
         sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
        //     sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
-
+        if(etat) {
             recupData("categorie");
             recupData("plat");
             recupData("restaurant");
             recupData("notePlat");
             recupData("noteRestaurant");
-
-            threadPopulate();
+        }
+        threadPopulate();
 
 
     }
@@ -169,7 +177,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                                 populate("notePlat");
                                 populate("noteRestaurant");
                                 if(progressBar.getProgress() == 100) {
-
+                                    initialisationUI();
                                     interrupt();
                                 }
                             }
