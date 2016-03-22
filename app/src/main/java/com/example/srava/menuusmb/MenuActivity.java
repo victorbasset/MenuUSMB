@@ -209,7 +209,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
 
                     Plat p = new Plat(c.getString(c.getColumnIndex(GestionDBhelper.PLAT_ID_PLAT)),c.getString(c.getColumnIndex(GestionDBhelper.PLAT_LIBELLE)),c.getString(c.getColumnIndex(GestionDBhelper.PLAT_PRIX)),c.getString(c.getColumnIndex(GestionDBhelper.PLAT_ID_CAT)),c.getString(c.getColumnIndex(GestionDBhelper.PLAT_ID_REST)),c.getString(c.getColumnIndex(GestionDBhelper.PLAT_JOUR)));
                     Plats.listePlats.add(p);
-                    c.moveToLast();
+                    c.moveToNext();
 
                 }
                 break;
@@ -219,7 +219,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                 for(int i = 1; i <= c.getCount(); i++)
                 {
                     Restaurants.listeRestaurants.add(new Restaurant(c.getString(c.getColumnIndex(GestionDBhelper.RESTAURANT_ID_RESTAURANT)), c.getString(c.getColumnIndex(GestionDBhelper.RESTAURANT_LIBELLE))));
-                    c.moveToLast();
+                    c.moveToNext();
                 }
                 break;
             case "categorie":
@@ -228,7 +228,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                 for(int i = 1; i <= c.getCount(); i++)
                 {
                     Categories.listeCategories.add(new Categorie(c.getString(c.getColumnIndex(GestionDBhelper.CATEGORIE_ID_CATEGORIE)),c.getString(c.getColumnIndex(GestionDBhelper.CATEGORIE_LIBELLE))));
-                    c.moveToLast();
+                    c.moveToNext();
                 }
                 break;
             case "notePlat":
@@ -237,7 +237,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                 for(int i = 1; i <= c.getCount(); i++)
                 {
                     NotesPlats.listeNotesPlats.add(new NotesPlat(c.getString(c.getColumnIndex(GestionDBhelper.NOTE_PLAT_ID_NOTE_PLAT)),c.getInt(c.getColumnIndex(GestionDBhelper.NOTE_PLAT_NOTE)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_PLAT_ID_PLAT)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_PLAT_COMMENTAIRE)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_PLAT_DATE))));
-                    c.moveToLast();
+                    c.moveToNext();
                 }
                 break;
             case "noteRestaurant":
@@ -246,7 +246,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                 for (int i = 1; i <= c.getCount(); i++) {
                     NoteRestaurants.listeNoteRestaurants.add(new NoteRestaurant(c.getString(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_ID_RESTAURANT)), c.getInt(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_NOTE)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_ID_RESTAURANT)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_COMMENTAIRE)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_DATE))));
                     progressBar.setProgress(100);
-                    c.moveToLast();
+                    c.moveToNext();
                 }
                 break;
         }
