@@ -58,7 +58,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
 
@@ -66,7 +66,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         //Récupération du boutton par l'id
-        final ImageButton connect = (ImageButton) findViewById(R.id.refresh);
+                                 final ImageButton connect = (ImageButton) findViewById(R.id.refresh);
 
         //Set le listener sur le boutton
         connect.setOnClickListener(this);
@@ -84,7 +84,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         populate("noteRestaurant");
 
 
-        if(Plats.listePlats.get(0).libelle_plat==null)
+        if(Plats.listePlats.isEmpty())
             Initialisation();
 
         horizontalChilds = 4;
