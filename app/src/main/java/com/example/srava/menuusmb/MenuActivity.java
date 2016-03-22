@@ -66,7 +66,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         //Récupération du boutton par l'id
-                                 final ImageButton connect = (ImageButton) findViewById(R.id.refresh);
+        final ImageButton connect = (ImageButton) findViewById(R.id.refresh);
 
         //Set le listener sur le boutton
         connect.setOnClickListener(this);
@@ -171,6 +171,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                Log.wtf("Populate","All");
                                 populate("categorie");
                                 populate("plat");
                                 populate("restaurant");
@@ -207,6 +208,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                     Plat p = new Plat(c.getString(c.getColumnIndex(GestionDBhelper.PLAT_ID_PLAT)),c.getString(c.getColumnIndex(GestionDBhelper.PLAT_LIBELLE)),c.getString(c.getColumnIndex(GestionDBhelper.PLAT_PRIX)),c.getString(c.getColumnIndex(GestionDBhelper.PLAT_ID_CAT)),c.getString(c.getColumnIndex(GestionDBhelper.PLAT_ID_REST)),c.getString(c.getColumnIndex(GestionDBhelper.PLAT_JOUR)));
                     Plats.listePlats.add(p);
                     c.moveToLast();
+
                 }
                 break;
             case "restaurant":
@@ -239,6 +241,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                 {
                     c.moveToFirst();
                     NoteRestaurants.listeNoteRestaurants.add(new NoteRestaurant(c.getString(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_ID_RESTAURANT)),c.getInt(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_NOTE)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_ID_RESTAURANT)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_COMMENTAIRE)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_DATE))));
+                    progressBar.setProgress(100);
                 }
                 break;
         }
