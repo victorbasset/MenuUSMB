@@ -70,7 +70,6 @@ public class VerticalPagerAdapter extends PagerAdapter{
 
         TextView tvChild = new TextView(mContext);
         tvChild.setGravity(Gravity.CENTER_HORIZONTAL);
-        position = position +1;
 
         TextView tvEntreDB = new TextView(mContext);
         tvEntreDB.setGravity(Gravity.CENTER_HORIZONTAL);
