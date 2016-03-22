@@ -60,8 +60,6 @@ public class MenuActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
          requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-
-
         // Récuperation de la progressBar par l'id
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
@@ -89,8 +87,6 @@ public class MenuActivity extends Activity implements View.OnClickListener {
             Initialisation(true);
         else
             Initialisation(false);
-
-
 
 
     }
@@ -135,9 +131,10 @@ public class MenuActivity extends Activity implements View.OnClickListener {
 
     private void Initialisation(Boolean etat) {
 
-        sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
-       //     sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
+               //     sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
         if(etat) {
+            sauvegardeShotsDB.dbHelper.onReset(sauvegardeShotsDB.dbHelper.getWritableDatabase());
+
             recupData("categorie");
             recupData("plat");
             recupData("restaurant");
@@ -150,6 +147,7 @@ public class MenuActivity extends Activity implements View.OnClickListener {
     }
 
     private void recupData(String type) {
+        Log.wtf("RecupData","Je recupe les data de "+type);
         final TextView connectionStatus = (TextView) findViewById(R.id.status );
 
         // Instanciation de la tâche asynchrone
@@ -236,11 +234,10 @@ public class MenuActivity extends Activity implements View.OnClickListener {
                 }
                 break;
             case "noteRestaurant":
-                c =sauvegardeShotsDB.getAllDataNotesRestaurants();
-                for(int i = 1; i <= c.getCount(); i++)
-                {
+                c = sauvegardeShotsDB.getAllDataNotesRestaurants();
+                for (int i = 1; i <= c.getCount(); i++) {
                     c.moveToFirst();
-                    NoteRestaurants.listeNoteRestaurants.add(new NoteRestaurant(c.getString(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_ID_RESTAURANT)),c.getInt(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_NOTE)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_ID_RESTAURANT)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_COMMENTAIRE)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_DATE))));
+                    NoteRestaurants.listeNoteRestaurants.add(new NoteRestaurant(c.getString(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_ID_RESTAURANT)), c.getInt(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_NOTE)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_ID_RESTAURANT)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_COMMENTAIRE)),c.getString(c.getColumnIndex(GestionDBhelper.NOTE_RESTAURANT_DATE))));
                     progressBar.setProgress(100);
                 }
                 break;
