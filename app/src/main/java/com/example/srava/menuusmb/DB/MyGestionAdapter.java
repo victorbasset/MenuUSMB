@@ -14,7 +14,7 @@ public class MyGestionAdapter {
 
         // variables de d
         // éfinition de la base gérée
-        private static final String DATABASE_NAME = "vtff3.db";
+        private static final String DATABASE_NAME = "vtff3.2.db";
         private static final int DATABASE_VERSION = 4;
         private SQLiteDatabase gestionDB; // reference vers une base de données
         public GestionDBhelper dbHelper; // référence vers le Helper de gestion de la base
