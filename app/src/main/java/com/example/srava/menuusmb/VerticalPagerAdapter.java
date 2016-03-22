@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
+import com.example.srava.menuusmb.Class.Plat;
 import com.example.srava.menuusmb.Class.Plats;
 import com.example.srava.menuusmb.Class.Restaurants;
 
@@ -20,7 +21,9 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class VerticalPagerAdapter extends PagerAdapter{
 
@@ -110,11 +113,55 @@ public class VerticalPagerAdapter extends PagerAdapter{
         Calendar friday = (Calendar) today.clone();
         friday.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
 
+        List<Plat> platLundi=new ArrayList<Plat>();
+        List<Plat> platMardi=new ArrayList<Plat>();
+        List<Plat> platMercredi=new ArrayList<Plat>();
+        List<Plat> platJeudi=new ArrayList<Plat>();
+        List<Plat> platVendredi=new ArrayList<Plat>();
+
+        String[] separatedL = sdf.format(monday.getTime()).split("/");
+        String datemodifyL =separatedL[2]+"-"+separatedL[1]+"-"+separatedL[0];
+
+        String[] separatedM = sdf.format(tuesday.getTime()).split("/");
+        String datemodifyM =separatedM[2]+"-"+separatedM[1]+"-"+separatedM[0];
+
+        String[] separatedMe = sdf.format(wednesday.getTime()).split("/");
+        String datemodifyMe =separatedMe[2]+"-"+separatedMe[1]+"-"+separatedMe[0];
+
+        String[] separatedJ = sdf.format(thursday.getTime()).split("/");
+        String datemodifyJ =separatedJ[2]+"-"+separatedJ[1]+"-"+separatedJ[0];
+
+        String[] separatedV = sdf.format(friday.getTime()).split("/");
+        String datemodifyV =separatedV[2]+"-"+separatedV[1]+"-"+separatedV[0];
+
+String wololo;
+for(int i=0; i < Plats.listePlats.size() ; i++){
+    wololo=Plats.listePlats.get(i).jour.toString();
+            if(wololo == datemodifyL){
+                platLundi.add(Plats.listePlats.get(i));
+            }
+            else if( datemodifyM.equals(wololo)){
+                platMardi.add(Plats.listePlats.get(i));
+            }
+            else if( wololo == datemodifyMe){
+                platMercredi.add(Plats.listePlats.get(i));
+            }
+            else if( wololo == datemodifyJ){
+                platJeudi.add(Plats.listePlats.get(i));
+            }
+            else if( wololo == datemodifyV){
+                platVendredi.add(Plats.listePlats.get(i));
+            }
+        }
 
         if(position == 0) {
             if(mParent == 0) {
                 tvChild.setText("Lundi " +sdf.format(monday.getTime()));
-                tvEntreDB.setText(Plats.listePlats.get(0).libelle_plat);
+                if(platLundi.size() != 0) {
+                    tvEntreDB.setText(platLundi.get(0).libelle_plat);
+                }
+                else
+                    tvEntreDB.setText("Pas de plat");
                 tvPlatDB.setText(Plats.listePlats.get(0).libelle_plat);
                 tvDessertDB.setText(Plats.listePlats.get(0).libelle_plat);
             }
@@ -141,7 +188,11 @@ public class VerticalPagerAdapter extends PagerAdapter{
         if(position == 1) {
             if(mParent == 0) {
                 tvChild.setText("Mardi " +sdf.format(tuesday.getTime()));
-                tvEntreDB.setText(Plats.listePlats.get(0).libelle_plat);
+                if(platMardi.size() != 0) {
+                    tvEntreDB.setText(platMardi.get(0).libelle_plat);
+                }
+                else
+                    tvEntreDB.setText("Pas de plat");
                 tvPlatDB.setText(Plats.listePlats.get(0).libelle_plat);
                 tvDessertDB.setText("dessert string Mardi");
             }
