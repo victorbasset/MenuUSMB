@@ -64,7 +64,7 @@ public class VerticalPagerAdapter extends PagerAdapter{
 
         TextView tvParent = new TextView(mContext);
         tvParent.setGravity(Gravity.CENTER_HORIZONTAL);
-        tvParent.setText("Restaurant :" + (Restaurants.listeRestaurants.get(mParent).getLibelleRestaurant()));
+        tvParent.setText(Restaurants.listeRestaurants.get(mParent).getLibelleRestaurant());
         tvParent.setTextColor(Color.BLACK);
         tvParent.setTextSize(30);
         linear.addView(tvParent);
