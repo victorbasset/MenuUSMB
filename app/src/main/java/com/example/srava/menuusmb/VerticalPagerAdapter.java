@@ -12,6 +12,7 @@ import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
 import com.example.srava.menuusmb.Class.Plats;
+import com.example.srava.menuusmb.Class.Restaurants;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,7 +64,7 @@ public class VerticalPagerAdapter extends PagerAdapter{
 
         TextView tvParent = new TextView(mContext);
         tvParent.setGravity(Gravity.CENTER_HORIZONTAL);
-        tvParent.setText("Restaurant :" + (mParent + 1));
+        tvParent.setText("Restaurant :" + (Restaurants.listeRestaurants.get(mParent).getLibelleRestaurant()));
         tvParent.setTextColor(Color.BLACK);
         tvParent.setTextSize(30);
         linear.addView(tvParent);
