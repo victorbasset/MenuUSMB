@@ -19,6 +19,8 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class VerticalPagerAdapter extends PagerAdapter{
 
@@ -87,27 +89,49 @@ public class VerticalPagerAdapter extends PagerAdapter{
         tvDessertDB.setTextColor(Color.WHITE);
         tvDessertDB.setTextSize(15);
 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+// Date du jour
+        Calendar today = Calendar.getInstance();
+
+// Date du lundi
+        Calendar monday = (Calendar) today.clone();
+        monday.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+// Date du mardi
+        Calendar tuesday = (Calendar) today.clone();
+        tuesday.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
+// Date du mercredi
+        Calendar wednesday = (Calendar) today.clone();
+        wednesday.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
+// Date du jeudi
+        Calendar thursday = (Calendar) today.clone();
+        thursday.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
+// Date du vendredi
+        Calendar friday = (Calendar) today.clone();
+        friday.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
+
+
         if(position == 0) {
             if(mParent == 0) {
-                tvChild.setText(Plats.listePlats.get(position).jour);
+                tvChild.setText("Lundi " +sdf.format(monday.getTime()));
                 tvEntreDB.setText(Plats.listePlats.get(0).libelle_plat);
                 tvPlatDB.setText(Plats.listePlats.get(0).libelle_plat);
                 tvDessertDB.setText(Plats.listePlats.get(0).libelle_plat);
             }
             if(mParent == 1) {
-                tvChild.setText(Plats.listePlats.get(position).jour);
+                tvChild.setText("Lundi " +sdf.format(monday.getTime()));
                 tvEntreDB.setText(Plats.listePlats.get(0).libelle_plat);
                 tvPlatDB.setText(Plats.listePlats.get(0).libelle_plat);
                 tvDessertDB.setText(Plats.listePlats.get(0).libelle_plat);
             }
             if(mParent == 2) {
-                tvChild.setText(Plats.listePlats.get(position).jour);
+                tvChild.setText("Lundi " +sdf.format(monday.getTime()));
                 tvEntreDB.setText(Plats.listePlats.get(0).libelle_plat);
                 tvPlatDB.setText(Plats.listePlats.get(0).libelle_plat);
                 tvDessertDB.setText(Plats.listePlats.get(0).libelle_plat);
             }
             if(mParent == 3) {
-                tvChild.setText(Plats.listePlats.get(position).jour);
+                tvChild.setText("Lundi " +sdf.format(monday.getTime()));
                 tvEntreDB.setText(Plats.listePlats.get(0).libelle_plat);
                 tvPlatDB.setText(Plats.listePlats.get(0).libelle_plat);
                 tvDessertDB.setText(Plats.listePlats.get(0).libelle_plat);
@@ -116,25 +140,25 @@ public class VerticalPagerAdapter extends PagerAdapter{
         }
         if(position == 1) {
             if(mParent == 0) {
-                tvChild.setText(Plats.listePlats.get(0).jour);
+                tvChild.setText("Mardi " +sdf.format(tuesday.getTime()));
                 tvEntreDB.setText(Plats.listePlats.get(0).libelle_plat);
                 tvPlatDB.setText(Plats.listePlats.get(0).libelle_plat);
                 tvDessertDB.setText("dessert string Mardi");
             }
             if(mParent == 1) {
-                tvChild.setText(Plats.listePlats.get(0).jour);
+                tvChild.setText("Mardi " +sdf.format(tuesday.getTime()));
                 tvEntreDB.setText("entree string Mardi");
                 tvPlatDB.setText("plat string Mardi");
                 tvDessertDB.setText("dessert string Mardi");
             }
             if(mParent == 2) {
-                tvChild.setText(Plats.listePlats.get(0).jour);
+                tvChild.setText("Mardi " +sdf.format(tuesday.getTime()));
                 tvEntreDB.setText("entree string Mardi");
                 tvPlatDB.setText("plat string Mardi");
                 tvDessertDB.setText("dessert string Mardi");
             }
             if(mParent == 3) {
-                tvChild.setText(Plats.listePlats.get(0).jour);
+                tvChild.setText("Mardi " +sdf.format(tuesday.getTime()));
                 tvEntreDB.setText("entree string Mardi");
                 tvPlatDB.setText("plat string Mardi");
                 tvDessertDB.setText("dessert string Mardi");
@@ -142,25 +166,25 @@ public class VerticalPagerAdapter extends PagerAdapter{
         }
         if(position == 2) {
             if (mParent == 0) {
-                tvChild.setText(Plats.listePlats.get(0).jour);
+                tvChild.setText("Mercredi " +sdf.format(wednesday.getTime()));
                 tvEntreDB.setText("entree string Mercredi");
                 tvPlatDB.setText("plat string Mercredi");
                 tvDessertDB.setText("dessert string Mercredi");
             }
             if (mParent == 1) {
-                tvChild.setText(Plats.listePlats.get(0).jour);
+                tvChild.setText("Mercredi " +sdf.format(wednesday.getTime()));
                 tvEntreDB.setText("entree string Mercredi");
                 tvPlatDB.setText("plat string Mercredi");
                 tvDessertDB.setText("dessert string Mercredi");
             }
             if (mParent == 2) {
-                tvChild.setText(Plats.listePlats.get(0).jour);
+                tvChild.setText("Mercredi " +sdf.format(wednesday.getTime()));
                 tvEntreDB.setText("entree string Mercredi");
                 tvPlatDB.setText("plat string Mercredi");
                 tvDessertDB.setText("dessert string Mercredi");
             }
             if (mParent == 3) {
-                tvChild.setText(Plats.listePlats.get(0).jour);
+                tvChild.setText("Mercredi " +sdf.format(wednesday.getTime()));
                 tvEntreDB.setText("entree string Mercredi");
                 tvPlatDB.setText("plat string Mercredi");
                 tvDessertDB.setText("dessert string Mercredi");
@@ -168,25 +192,25 @@ public class VerticalPagerAdapter extends PagerAdapter{
         }
         if(position == 3) {
             if (mParent == 0) {
-                tvChild.setText(Plats.listePlats.get(0).jour);
+                tvChild.setText("Jeudi " +sdf.format(thursday.getTime()));
                 tvEntreDB.setText("entree string Jeudi");
                 tvPlatDB.setText("plat string Jeudi");
                 tvDessertDB.setText("dessert string Jeudi");
             }
             if (mParent == 1) {
-                tvChild.setText(Plats.listePlats.get(0).jour);
+                tvChild.setText("Jeudi " +sdf.format(thursday.getTime()));
                 tvEntreDB.setText("entree string Jeudi");
                 tvPlatDB.setText("plat string Jeudi");
                 tvDessertDB.setText("dessert string Jeudi");
             }
             if (mParent == 2) {
-                tvChild.setText(Plats.listePlats.get(0).jour);
+                tvChild.setText("Jeudi " +sdf.format(thursday.getTime()));
                 tvEntreDB.setText("entree string Jeudi");
                 tvPlatDB.setText("plat string Jeudi");
                 tvDessertDB.setText("dessert string Jeudi");
             }
             if (mParent == 3) {
-                tvChild.setText(Plats.listePlats.get(0).jour);
+                tvChild.setText("Jeudi " +sdf.format(thursday.getTime()));
                 tvEntreDB.setText("entree string Jeudi");
                 tvPlatDB.setText("plat string Jeudi");
                 tvDessertDB.setText("dessert string Jeudi");
@@ -194,25 +218,25 @@ public class VerticalPagerAdapter extends PagerAdapter{
         }
         if(position == 4) {
             if (mParent == 0) {
-                tvChild.setText("Vendredi");
+                tvChild.setText("Vendredi " +sdf.format(friday.getTime()));
                 tvEntreDB.setText("entree string Vendredi");
                 tvPlatDB.setText("plat string Vendredi");
                 tvDessertDB.setText("dessert string Vendredi");
             }
             if (mParent == 1) {
-                tvChild.setText("Vendredi");
+                tvChild.setText("Vendredi " +sdf.format(friday.getTime()));
                 tvEntreDB.setText("entree string Vendredi");
                 tvPlatDB.setText("plat string Vendredi");
                 tvDessertDB.setText("dessert string Vendredi");
             }
             if (mParent == 2) {
-                tvChild.setText("Vendredi");
+                tvChild.setText("Vendredi " +sdf.format(friday.getTime()));
                 tvEntreDB.setText("entree string Vendredi");
                 tvPlatDB.setText("plat string Vendredi");
                 tvDessertDB.setText("dessert string Vendredi");
             }
             if (mParent == 3) {
-                tvChild.setText("Vendredi");
+                tvChild.setText("Vendredi " +sdf.format(friday.getTime()));
                 tvEntreDB.setText("entree string Vendredi");
                 tvPlatDB.setText("plat string Vendredi");
                 tvDessertDB.setText("dessert string Vendredi");
