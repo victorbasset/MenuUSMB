@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/DoubleViewPagerSample/DoubleViewPagerSample.iml" filepath="$PROJECT_DIR$/DoubleViewPagerSample/DoubleViewPagerSample.iml" />
       <module fileurl="file://$PROJECT_DIR$/MenuUSMBs.iml" filepath="$PROJECT_DIR$/MenuUSMBs.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nhjMenuUSMB.iml" filepath="$PROJECT_DIR$/nhjMenuUSMB.iml" />
     </modules>
   </component>
 </project>
