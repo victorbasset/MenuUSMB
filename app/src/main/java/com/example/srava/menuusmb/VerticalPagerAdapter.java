@@ -137,19 +137,19 @@ public class VerticalPagerAdapter extends PagerAdapter{
 String wololo;
 for(int i=0; i < Plats.listePlats.size() ; i++){
     wololo=Plats.listePlats.get(i).jour.toString();
-            if(wololo == datemodifyL){
+            if( datemodifyL.equals(wololo)){
                 platLundi.add(Plats.listePlats.get(i));
             }
             else if( datemodifyM.equals(wololo)){
                 platMardi.add(Plats.listePlats.get(i));
             }
-            else if( wololo == datemodifyMe){
+            else if(   datemodifyMe.equals(wololo)){
                 platMercredi.add(Plats.listePlats.get(i));
             }
-            else if( wololo == datemodifyJ){
+            else if(  datemodifyJ.equals(wololo)){
                 platJeudi.add(Plats.listePlats.get(i));
             }
-            else if( wololo == datemodifyV){
+            else if(  datemodifyV.equals(wololo) ){
                 platVendredi.add(Plats.listePlats.get(i));
             }
         }
@@ -213,17 +213,17 @@ for(int i=0; i < Plats.listePlats.size() ; i++){
                                 ntrP=false;
                                 ntrD=false;
                                 for (Plat p : platLundi) {
-                                    if(p.id_restaurant.equals(Integer.toString(mParent))) {
+                                    if(p.id_restaurant.equals(Integer.toString(mParent+1))) {
 
-                                        if (p.id_categorie.equals("0")){
+                                        if (p.id_categorie.equals("1")){
                                             tvEntreDB.setText(p.libelle_plat);
                                             ntrE = true;
                                         }
-                                        else if (p.id_categorie.equals("1")) {
+                                        else if (p.id_categorie.equals("2")) {
                                             tvPlatDB.setText(p.libelle_plat);
                                             ntrP = true;
                                         }
-                                        else if ( p.id_categorie.equals("2")) {
+                                        else if ( p.id_categorie.equals("3")) {
                                             tvDessertDB.setText(p.libelle_plat);
                                             ntrD = true;
                                         }
@@ -254,14 +254,14 @@ for(int i=0; i < Plats.listePlats.size() ; i++){
                                 ntrP=false;
                                 ntrD=false;
                                 for (Plat p : platMardi) {
-                                    if(p.id_restaurant.equals(Integer.toString(mParent))) {
-                                        if (p.id_categorie.equals("0")) {
+                                    if(p.id_restaurant.equals(Integer.toString(mParent+1))) {
+                                        if (p.id_categorie.equals("1")) {
                                             tvEntreDB.setText(p.libelle_plat);
                                             ntrE = true;
-                                        } else if (p.id_categorie.equals("1")) {
+                                        } else if (p.id_categorie.equals("2")) {
                                             tvPlatDB.setText(p.libelle_plat);
                                             ntrP = true;
-                                        } else if (p.id_categorie.equals("2")) {
+                                        } else if (p.id_categorie.equals("3")) {
                                             tvDessertDB.setText(p.libelle_plat);
                                             ntrD = true;
                                         }
@@ -290,16 +290,16 @@ for(int i=0; i < Plats.listePlats.size() ; i++){
                                 ntrP=false;
                                 ntrD=false;
                                 for (Plat p : platMercredi) {
-                                    if(p.id_restaurant.equals(Integer.toString(mParent))) {
-                                        if (p.id_categorie.equals("0")){
+                                    if(p.id_restaurant.equals(Integer.toString(mParent+1))) {
+                                        if (p.id_categorie.equals("1")){
                                             tvEntreDB.setText(p.libelle_plat);
                                             ntrE = true;
                                         }
-                                        else if (p.id_categorie.equals("1")) {
+                                        else if (p.id_categorie.equals("2")) {
                                             tvPlatDB.setText(p.libelle_plat);
                                             ntrP = true;
                                         }
-                                        else if ( p.id_categorie.equals("2")) {
+                                        else if ( p.id_categorie.equals("3")) {
                                             tvDessertDB.setText(p.libelle_plat);
                                             ntrD = true;
                                         }
@@ -330,16 +330,16 @@ for(int i=0; i < Plats.listePlats.size() ; i++){
                                 ntrP=false;
                                 ntrD=false;
                                 for (Plat p : platJeudi) {
-                                    if(p.id_restaurant.equals(Integer.toString(mParent))) {
-                                        if (p.id_categorie.equals("0")){
+                                    if(p.id_restaurant.equals(Integer.toString(mParent+1))) {
+                                        if (p.id_categorie.equals("1")){
                                             tvEntreDB.setText(p.libelle_plat);
                                             ntrE = true;
                                         }
-                                        else if (p.id_categorie.equals("1")) {
+                                        else if (p.id_categorie.equals("2")) {
                                             tvPlatDB.setText(p.libelle_plat);
                                             ntrP = true;
                                         }
-                                        else if ( p.id_categorie.equals("2")) {
+                                        else if ( p.id_categorie.equals("3")) {
                                             tvDessertDB.setText(p.libelle_plat);
                                             ntrD = true;
                                         }
@@ -370,16 +370,16 @@ for(int i=0; i < Plats.listePlats.size() ; i++){
                                 ntrP=false;
                                 ntrD=false;
                                 for (Plat p : platVendredi) {
-                                    if(p.id_restaurant.equals(Integer.toString(mParent))) {
-                                        if (p.id_categorie.equals("0")){
+                                    if(p.id_restaurant.equals(Integer.toString(mParent+1))) {
+                                        if (p.id_categorie.equals("1")){
                                             tvEntreDB.setText(p.libelle_plat);
                                             ntrE = true;
                                         }
-                                        else if (p.id_categorie.equals("1")) {
+                                        else if (p.id_categorie.equals("2")) {
                                             tvPlatDB.setText(p.libelle_plat);
                                             ntrP = true;
                                         }
-                                        else if ( p.id_categorie.equals("2")) {
+                                        else if ( p.id_categorie.equals("3")) {
                                             tvDessertDB.setText(p.libelle_plat);
                                             ntrD = true;
                                         }
