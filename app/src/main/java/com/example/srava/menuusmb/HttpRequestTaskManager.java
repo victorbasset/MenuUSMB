@@ -134,7 +134,7 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
                 switch(postTmp.parametreUrl){
                     case "plat":
                         Plats p = deserializePlats(result.toString());
-                        connectionStatus.setText(p.listePlats.toString());
+                        connectionStatus.setText("Récupération des plats");
                         publishProgress(75);
                         MenuActivity.sauvegardeShotsDB.open();
                         for(Plat plat : p.listePlats){
@@ -150,7 +150,7 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
                         break;
                     case "restaurant":
                         Restaurants r = deserializeRestaurants(result.toString());
-                        connectionStatus.setText(r.listeRestaurants.toString());
+                        connectionStatus.setText("Récupération des restaurants");
                         publishProgress(75);
                         MenuActivity.sauvegardeShotsDB.open();
                         for(Restaurant rest : r.listeRestaurants){
@@ -163,7 +163,7 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
                         break;
                     case "categorie":
                         Categories c = deserializeCategories(result.toString());
-                        connectionStatus.setText(c.listeCategories.toString());
+                        connectionStatus.setText("Récupération des catégories");
                         publishProgress(75);
                         MenuActivity.sauvegardeShotsDB.open();
                         for(Categorie categorie : c.listeCategories){
@@ -176,7 +176,7 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
                         break;
                     case "notePlat":
                         NotesPlats np = deserializeNotesPlats(result.toString());
-                        connectionStatus.setText(np.listeNotesPlats.toString());
+                        connectionStatus.setText("Récupération des notes plats");
                         publishProgress(90);
                         MenuActivity.sauvegardeShotsDB.open();
                         for(NotesPlat noteplat : np.listeNotesPlats){
@@ -190,7 +190,7 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
                         break;
                     case "noteRestaurant":
                         NoteRestaurants nr = deserializeNotesRestaurants(result.toString());
-                        connectionStatus.setText(nr.listeNoteRestaurants.toString());
+                        connectionStatus.setText("Récupération des notes restaurants");
                         publishProgress(90);
                         MenuActivity.sauvegardeShotsDB.open();
                         for(NoteRestaurant noteRestaurant : nr.listeNoteRestaurants){
@@ -202,13 +202,14 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
                         MenuActivity.sauvegardeShotsDB.close();
                         LinkTables();
                         publishProgress(100);
+                        connectionStatus.setText("Menu mis à jour avec succès !");
                         break;
                 }
 
 
             }
             else {
-                connectionStatus.setText(result.getString(FLAG_MESSAGE).toString());
+                connectionStatus.setText("Erreur de chargement");
                 publishProgress(0);
             }
             //Gestion des erreurs et expections

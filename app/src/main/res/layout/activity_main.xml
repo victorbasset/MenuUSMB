@@ -32,14 +32,14 @@
         android:id="@+id/status"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Pas de restau"
+        android:text="Mode hors ligne"
         android:textColor="#000"
         android:textSize="15dp"
         android:paddingLeft="20dp"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/tvTitre"
         app:layout_heightPercent="10%"
-        app:layout_widthPercent="50%" />
+        app:layout_widthPercent="70%" />
 
     <com.emoiluj.doubleviewpager.DoubleViewPager
 

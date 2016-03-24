@@ -2,6 +2,7 @@ package com.example.srava.menuusmb;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.Gravity;
@@ -72,6 +73,7 @@ public class VerticalPagerAdapter extends PagerAdapter{
         tvParent.setText(Restaurants.listeRestaurants.get(mParent).getLibelleRestaurant());
         tvParent.setTextColor(Color.BLACK);
         tvParent.setTextSize(30);
+        tvParent.setBackgroundResource(R.drawable.textview_border);
         linear.addView(tvParent);
 
         TextView tvChild = new TextView(mContext);
@@ -81,11 +83,13 @@ public class VerticalPagerAdapter extends PagerAdapter{
         tvEntreDB.setGravity(Gravity.CENTER_HORIZONTAL);
         tvEntreDB.setTextColor(Color.WHITE);
         tvEntreDB.setTextSize(15);
+        tvEntreDB.setPadding(0,0,0,75);
 
         TextView tvPlatDB = new TextView(mContext);
         tvPlatDB.setGravity(Gravity.CENTER_HORIZONTAL);
         tvPlatDB.setTextColor(Color.WHITE);
         tvPlatDB.setTextSize(15);
+        tvPlatDB.setPadding(0,0,0,75);
 
         TextView tvDessertDB = new TextView(mContext);
         tvDessertDB.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -134,9 +138,9 @@ public class VerticalPagerAdapter extends PagerAdapter{
         String[] separatedV = sdf.format(friday.getTime()).split("/");
         String datemodifyV =separatedV[2]+"-"+separatedV[1]+"-"+separatedV[0];
 
-String wololo;
-for(int i=0; i < Plats.listePlats.size() ; i++){
-    wololo=Plats.listePlats.get(i).jour.toString();
+        String wololo;
+        for(int i=0; i < Plats.listePlats.size() ; i++){
+            wololo=Plats.listePlats.get(i).jour.toString();
             if( datemodifyL.equals(wololo)){
                 platLundi.add(Plats.listePlats.get(i));
             }
@@ -155,17 +159,21 @@ for(int i=0; i < Plats.listePlats.size() ; i++){
         }
 
 
-        Init(position, tvChild, tvEntreDB, tvPlatDB, tvDessertDB, sdf, monday, tuesday, wednesday, thursday, friday, platLundi, platMardi,platMercredi,platJeudi,platVendredi);
+        Init(position, tvChild, tvEntreDB, tvPlatDB, tvDessertDB, sdf, monday, tuesday, wednesday,
+                thursday, friday, platLundi, platMardi, platMercredi, platJeudi, platVendredi);
 
         tvChild.setTextColor(Color.BLACK);
         tvChild.setTextSize(20);
+        tvChild.setBackgroundResource(R.drawable.textview_border2);
         linear.addView(tvChild);
 
         TextView tvEntre = new TextView(mContext);
         tvEntre.setGravity(Gravity.CENTER_HORIZONTAL);
         tvEntre.setText("Entrée");
-        tvEntre.setTextColor(Color.WHITE);
+        tvEntre.setTextColor(Color.parseColor("#C9C9C9"));
         tvEntre.setTextSize(15);
+        tvEntre.setPadding(0,100,0,0);
+        tvEntre.setTypeface(null, Typeface.ITALIC);
         linear.addView(tvEntre);
 
 
@@ -174,8 +182,9 @@ for(int i=0; i < Plats.listePlats.size() ; i++){
         TextView tvPlat = new TextView(mContext);
         tvPlat.setGravity(Gravity.CENTER_HORIZONTAL);
         tvPlat.setText("Plat");
-        tvPlat.setTextColor(Color.WHITE);
+        tvPlat.setTextColor(Color.parseColor("#C9C9C9"));
         tvPlat.setTextSize(15);
+        tvPlat.setTypeface(null, Typeface.ITALIC);
         linear.addView(tvPlat);
 
 
@@ -184,8 +193,9 @@ for(int i=0; i < Plats.listePlats.size() ; i++){
         TextView tvDessert = new TextView(mContext);
         tvDessert.setGravity(Gravity.CENTER_HORIZONTAL);
         tvDessert.setText("Dessert");
-        tvDessert.setTextColor(Color.WHITE);
+        tvDessert.setTextColor(Color.parseColor("#C9C9C9"));
         tvDessert.setTextSize(15);
+        tvDessert.setTypeface(null, Typeface.ITALIC);
         linear.addView(tvDessert);
 
 
@@ -203,208 +213,208 @@ for(int i=0; i < Plats.listePlats.size() ; i++){
         for(int i = 0; i <= 4; i++)
         {
 
-                for(int j = 0; j <= 3; j++)
-                {
-                    switch (position) {
-                        case 0:
-                            tvChild.setText("Lundi " +sdf.format(monday.getTime()));
-                            if(platLundi.size() != 0 ) {
-                                ntrE=false;
-                                ntrP=false;
-                                ntrD=false;
-                                for (Plat p : platLundi) {
-                                    if(p.id_restaurant.equals(Integer.toString(mParent+1))) {
+            for(int j = 0; j <= 3; j++)
+            {
+                switch (position) {
+                    case 0:
+                        tvChild.setText("Lundi " +sdf.format(monday.getTime()));
+                        if(platLundi.size() != 0 ) {
+                            ntrE=false;
+                            ntrP=false;
+                            ntrD=false;
+                            for (Plat p : platLundi) {
+                                if(p.id_restaurant.equals(Integer.toString(mParent+1))) {
 
-                                        if (p.id_categorie.equals("1")){
-                                            tvEntreDB.setText(p.libelle_plat);
-                                            ntrE = true;
-                                        }
-                                        else if (p.id_categorie.equals("2")) {
-                                            tvPlatDB.setText(p.libelle_plat);
-                                            ntrP = true;
-                                        }
-                                        else if ( p.id_categorie.equals("3")) {
-                                            tvDessertDB.setText(p.libelle_plat);
-                                            ntrD = true;
-                                        }
-                                        else{
-
-                                        }
+                                    if (p.id_categorie.equals("1")){
+                                        tvEntreDB.setText(p.libelle_plat);
+                                        ntrE = true;
                                     }
-                                }
-                                if(!ntrE)
-                                    tvEntreDB.setText("Pas de plat");
-                                if(!ntrP)
-                                    tvPlatDB.setText("Pas de plat");
-                                if(!ntrD)
-                                    tvDessertDB.setText("Pas de plat");
-
-                            }
-                            else{
-                                tvEntreDB.setText("Pas de plat");
-                                tvPlatDB.setText("Pas de plat");
-                                tvDessertDB.setText("Pas de plat");
-
-                            }
-                            break;
-                        case 1:
-                            tvChild.setText("Mardi " +sdf.format(tuesday.getTime()));
-                            if(platMardi.size() != 0 ) {
-                                ntrE=false;
-                                ntrP=false;
-                                ntrD=false;
-                                for (Plat p : platMardi) {
-                                    if(p.id_restaurant.equals(Integer.toString(mParent+1))) {
-                                        if (p.id_categorie.equals("1")) {
-                                            tvEntreDB.setText(p.libelle_plat);
-                                            ntrE = true;
-                                        } else if (p.id_categorie.equals("2")) {
-                                            tvPlatDB.setText(p.libelle_plat);
-                                            ntrP = true;
-                                        } else if (p.id_categorie.equals("3")) {
-                                            tvDessertDB.setText(p.libelle_plat);
-                                            ntrD = true;
-                                        }
+                                    else if (p.id_categorie.equals("2")) {
+                                        tvPlatDB.setText(p.libelle_plat);
+                                        ntrP = true;
+                                    }
+                                    else if ( p.id_categorie.equals("3")) {
+                                        tvDessertDB.setText(p.libelle_plat);
+                                        ntrD = true;
+                                    }
+                                    else{
 
                                     }
                                 }
-                                if(!ntrE)
-                                    tvEntreDB.setText("Pas de plat");
-                                if(!ntrP)
-                                    tvPlatDB.setText("Pas de plat");
-                                if(!ntrD)
-                                    tvDessertDB.setText("Pas de plat");
-
                             }
-                            else{
+                            if(!ntrE)
                                 tvEntreDB.setText("Pas de plat");
+                            if(!ntrP)
                                 tvPlatDB.setText("Pas de plat");
+                            if(!ntrD)
                                 tvDessertDB.setText("Pas de plat");
 
-                            }
-                            break;
-                        case 2:
-                            tvChild.setText("Mercredi " +sdf.format(wednesday.getTime()));
-                            if(platMercredi.size() != 0 ) {
-                                ntrE=false;
-                                ntrP=false;
-                                ntrD=false;
-                                for (Plat p : platMercredi) {
-                                    if(p.id_restaurant.equals(Integer.toString(mParent+1))) {
-                                        if (p.id_categorie.equals("1")){
-                                            tvEntreDB.setText(p.libelle_plat);
-                                            ntrE = true;
-                                        }
-                                        else if (p.id_categorie.equals("2")) {
-                                            tvPlatDB.setText(p.libelle_plat);
-                                            ntrP = true;
-                                        }
-                                        else if ( p.id_categorie.equals("3")) {
-                                            tvDessertDB.setText(p.libelle_plat);
-                                            ntrD = true;
-                                        }
-                                        else{
+                        }
+                        else{
+                            tvEntreDB.setText("Pas de plat");
+                            tvPlatDB.setText("Pas de plat");
+                            tvDessertDB.setText("Pas de plat");
 
-                                        }
+                        }
+                        break;
+                    case 1:
+                        tvChild.setText("Mardi " +sdf.format(tuesday.getTime()));
+                        if(platMardi.size() != 0 ) {
+                            ntrE=false;
+                            ntrP=false;
+                            ntrD=false;
+                            for (Plat p : platMardi) {
+                                if(p.id_restaurant.equals(Integer.toString(mParent+1))) {
+                                    if (p.id_categorie.equals("1")) {
+                                        tvEntreDB.setText(p.libelle_plat);
+                                        ntrE = true;
+                                    } else if (p.id_categorie.equals("2")) {
+                                        tvPlatDB.setText(p.libelle_plat);
+                                        ntrP = true;
+                                    } else if (p.id_categorie.equals("3")) {
+                                        tvDessertDB.setText(p.libelle_plat);
+                                        ntrD = true;
+                                    }
+
+                                }
+                            }
+                            if(!ntrE)
+                                tvEntreDB.setText("Pas de plat");
+                            if(!ntrP)
+                                tvPlatDB.setText("Pas de plat");
+                            if(!ntrD)
+                                tvDessertDB.setText("Pas de plat");
+
+                        }
+                        else{
+                            tvEntreDB.setText("Pas de plat");
+                            tvPlatDB.setText("Pas de plat");
+                            tvDessertDB.setText("Pas de plat");
+
+                        }
+                        break;
+                    case 2:
+                        tvChild.setText("Mercredi " +sdf.format(wednesday.getTime()));
+                        if(platMercredi.size() != 0 ) {
+                            ntrE=false;
+                            ntrP=false;
+                            ntrD=false;
+                            for (Plat p : platMercredi) {
+                                if(p.id_restaurant.equals(Integer.toString(mParent+1))) {
+                                    if (p.id_categorie.equals("1")){
+                                        tvEntreDB.setText(p.libelle_plat);
+                                        ntrE = true;
+                                    }
+                                    else if (p.id_categorie.equals("2")) {
+                                        tvPlatDB.setText(p.libelle_plat);
+                                        ntrP = true;
+                                    }
+                                    else if ( p.id_categorie.equals("3")) {
+                                        tvDessertDB.setText(p.libelle_plat);
+                                        ntrD = true;
+                                    }
+                                    else{
+
                                     }
                                 }
-                                if(!ntrE)
-                                    tvEntreDB.setText("Pas de plat");
-                                if(!ntrP)
-                                    tvPlatDB.setText("Pas de plat");
-                                if(!ntrD)
-                                    tvDessertDB.setText("Pas de plat");
-
                             }
-                            else{
+                            if(!ntrE)
                                 tvEntreDB.setText("Pas de plat");
+                            if(!ntrP)
                                 tvPlatDB.setText("Pas de plat");
+                            if(!ntrD)
                                 tvDessertDB.setText("Pas de plat");
 
-                            }
-                            break;
-                        case 3:
-                            tvChild.setText("Jeudi " +sdf.format(thursday.getTime()));
-                            if(platJeudi.size() != 0 ) {
-                                ntrE=false;
-                                ntrP=false;
-                                ntrD=false;
-                                for (Plat p : platJeudi) {
-                                    if(p.id_restaurant.equals(Integer.toString(mParent+1))) {
-                                        if (p.id_categorie.equals("1")){
-                                            tvEntreDB.setText(p.libelle_plat);
-                                            ntrE = true;
-                                        }
-                                        else if (p.id_categorie.equals("2")) {
-                                            tvPlatDB.setText(p.libelle_plat);
-                                            ntrP = true;
-                                        }
-                                        else if ( p.id_categorie.equals("3")) {
-                                            tvDessertDB.setText(p.libelle_plat);
-                                            ntrD = true;
-                                        }
-                                        else{
+                        }
+                        else{
+                            tvEntreDB.setText("Pas de plat");
+                            tvPlatDB.setText("Pas de plat");
+                            tvDessertDB.setText("Pas de plat");
 
-                                        }
+                        }
+                        break;
+                    case 3:
+                        tvChild.setText("Jeudi " +sdf.format(thursday.getTime()));
+                        if(platJeudi.size() != 0 ) {
+                            ntrE=false;
+                            ntrP=false;
+                            ntrD=false;
+                            for (Plat p : platJeudi) {
+                                if(p.id_restaurant.equals(Integer.toString(mParent+1))) {
+                                    if (p.id_categorie.equals("1")){
+                                        tvEntreDB.setText(p.libelle_plat);
+                                        ntrE = true;
+                                    }
+                                    else if (p.id_categorie.equals("2")) {
+                                        tvPlatDB.setText(p.libelle_plat);
+                                        ntrP = true;
+                                    }
+                                    else if ( p.id_categorie.equals("3")) {
+                                        tvDessertDB.setText(p.libelle_plat);
+                                        ntrD = true;
+                                    }
+                                    else{
+
                                     }
                                 }
-                                if(!ntrE)
-                                    tvEntreDB.setText("Pas de plat");
-                                if(!ntrP)
-                                    tvPlatDB.setText("Pas de plat");
-                                if(!ntrD)
-                                    tvDessertDB.setText("Pas de plat");
-
                             }
-                            else{
+                            if(!ntrE)
                                 tvEntreDB.setText("Pas de plat");
+                            if(!ntrP)
                                 tvPlatDB.setText("Pas de plat");
+                            if(!ntrD)
                                 tvDessertDB.setText("Pas de plat");
 
-                            }
-                            break;
-                        case 4:
-                            tvChild.setText("Vendredi " +sdf.format(friday.getTime()));
-                            if(platVendredi.size() != 0 ) {
-                                ntrE=false;
-                                ntrP=false;
-                                ntrD=false;
-                                for (Plat p : platVendredi) {
-                                    if(p.id_restaurant.equals(Integer.toString(mParent+1))) {
-                                        if (p.id_categorie.equals("1")){
-                                            tvEntreDB.setText(p.libelle_plat);
-                                            ntrE = true;
-                                        }
-                                        else if (p.id_categorie.equals("2")) {
-                                            tvPlatDB.setText(p.libelle_plat);
-                                            ntrP = true;
-                                        }
-                                        else if ( p.id_categorie.equals("3")) {
-                                            tvDessertDB.setText(p.libelle_plat);
-                                            ntrD = true;
-                                        }
-                                        else{
+                        }
+                        else{
+                            tvEntreDB.setText("Pas de plat");
+                            tvPlatDB.setText("Pas de plat");
+                            tvDessertDB.setText("Pas de plat");
 
-                                        }
+                        }
+                        break;
+                    case 4:
+                        tvChild.setText("Vendredi " +sdf.format(friday.getTime()));
+                        if(platVendredi.size() != 0 ) {
+                            ntrE=false;
+                            ntrP=false;
+                            ntrD=false;
+                            for (Plat p : platVendredi) {
+                                if(p.id_restaurant.equals(Integer.toString(mParent+1))) {
+                                    if (p.id_categorie.equals("1")){
+                                        tvEntreDB.setText(p.libelle_plat);
+                                        ntrE = true;
+                                    }
+                                    else if (p.id_categorie.equals("2")) {
+                                        tvPlatDB.setText(p.libelle_plat);
+                                        ntrP = true;
+                                    }
+                                    else if ( p.id_categorie.equals("3")) {
+                                        tvDessertDB.setText(p.libelle_plat);
+                                        ntrD = true;
+                                    }
+                                    else{
+
                                     }
                                 }
-                                if(!ntrE)
-                                    tvEntreDB.setText("Pas de plat");
-                                if(!ntrP)
-                                    tvPlatDB.setText("Pas de plat");
-                                if(!ntrD)
-                                    tvDessertDB.setText("Pas de plat");
-
                             }
-                            else{
+                            if(!ntrE)
                                 tvEntreDB.setText("Pas de plat");
+                            if(!ntrP)
                                 tvPlatDB.setText("Pas de plat");
+                            if(!ntrD)
                                 tvDessertDB.setText("Pas de plat");
 
-                            }
-                            break;
+                        }
+                        else{
+                            tvEntreDB.setText("Pas de plat");
+                            tvPlatDB.setText("Pas de plat");
+                            tvDessertDB.setText("Pas de plat");
 
-                    }
+                        }
+                        break;
+
+                }
             }
         }
     }
