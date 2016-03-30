@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by modenaq on 01/03/2016.
  */
-// class categories permettant de recuperer la liste des plats
+// class Plats permettant de recuperer la liste des plats
 public class Plats {
     public static List<Plat> listePlats;
 

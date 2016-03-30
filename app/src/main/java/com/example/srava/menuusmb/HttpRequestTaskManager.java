@@ -130,7 +130,7 @@ public class HttpRequestTaskManager extends AsyncTask<Post, Integer, JSONObject>
             // On vérifie si les logs sont OK !
             if(resSuccess!=0){
 
-                //connectionStatus.setText(result.getString(FLAG_MESSAGE).toString());
+                //switch permettant de deserializer la classe passer en commentaire via un string
                 switch(postTmp.parametreUrl){
                     case "plat":
                         Plats p = deserializePlats(result.toString());
