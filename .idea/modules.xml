@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DoubleViewPager/DoubleViewPager.iml" filepath="$PROJECT_DIR$/DoubleViewPager/DoubleViewPager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MenuUSMB.iml" filepath="$PROJECT_DIR$/MenuUSMB.iml" />
       <module fileurl="file://$PROJECT_DIR$/MenuUSMBd.iml" filepath="$PROJECT_DIR$/MenuUSMBd.iml" />
       <module fileurl="file://$PROJECT_DIR$/MenuUSMBs.iml" filepath="$PROJECT_DIR$/MenuUSMBs.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
