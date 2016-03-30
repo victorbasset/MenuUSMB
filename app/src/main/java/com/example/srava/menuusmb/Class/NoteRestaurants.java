@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * Created by perezgoa on 01/03/2016.
  */
+// class Note Restaurant permettant de recuperer les notes  des restaurants
 public class NoteRestaurants {
     public static List<NoteRestaurant> listeNoteRestaurants;
 

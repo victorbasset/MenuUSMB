@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * Created by modenaq on 01/03/2016.
  */
+// class Note Plats permettant de recuperer les notes  des plats
 public class NotesPlats {
     public static List<NotesPlat> listeNotesPlats;
 

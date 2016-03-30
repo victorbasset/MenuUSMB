@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * Created by modenaq on 01/03/2016.
  */
+// class categories permettant de recuperer la liste des restaurants
 public class Restaurants {
     public static List<Restaurant> listeRestaurants;
 

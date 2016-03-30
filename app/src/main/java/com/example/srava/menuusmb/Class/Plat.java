@@ -3,6 +3,7 @@ package com.example.srava.menuusmb.Class;
 /**
  * Created by modenaq on 01/03/2016.
  */
+// class plat permettant de recuperer les plats
 public class Plat {
     public String id_plat;
     public String libelle_plat;

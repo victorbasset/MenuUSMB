@@ -5,6 +5,7 @@ import java.util.Date;
 /**
  * Created by modenaq on 01/03/2016.
  */
+// class Note Plat permettant de recuperer les notes  des plats
 public class NotesPlat {
     public String id_note_plat;
     public Integer note;

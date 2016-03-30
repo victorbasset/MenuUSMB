@@ -5,6 +5,7 @@ import java.util.Date;
 /**
  * Created by perezgoa on 01/03/2016.
  */
+// class Note Restaurant permettant de recuperer les notes  des restaurants
 public class NoteRestaurant {
     public String id_note_restaurant;
     public int note;

@@ -3,6 +3,7 @@ package com.example.srava.menuusmb.Class;
 /**
  * Created by modenaq on 01/03/2016.
  */
+// class restaurant permettant de recuperer les restaurants
 public class Restaurant {
     public String id_restaurant;
     public String libelle_restaurant;
